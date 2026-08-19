@@ -42,23 +42,29 @@
 
   /* ── Téléphone partout ───────────────────────────────── */
   var tel = e.telephone_lien || (e.telephone || '').replace(/[^0-9+]/g, '');
-  [['nav-tel', e.telephone], ['contact-tel', e.telephone], ['callbar', 'Appeler ' + (e.telephone || '')]]
-    .forEach(function (p) {
-      var el = $(p[0]); if (!el) return;
-      el.href = 'tel:' + tel; el.textContent = p[1];
-    });
+  /* liens simples : href + libellé */
+  [['nav-tel', e.telephone], ['ctabar-tel', e.telephone]].forEach(function (p) {
+    var el = $(p[0]); if (!el) return;
+    el.href = 'tel:' + tel; el.textContent = p[1];
+  });
+  /* liens composés : href seulement, leur contenu est déjà en place */
+  ['contact-tel', 'callbar'].forEach(function (id) {
+    var el = $(id); if (el) el.href = 'tel:' + tel;
+  });
+  var num = $('contact-telnum'); if (num) num.textContent = e.telephone || '';
+  var cbn = $('callbar-num'); if (cbn) cbn.textContent = e.telephone || '';
   var mailEl = $('contact-mail');
   if (mailEl && e.email) mailEl.innerHTML = '<a href="mailto:' + esc(e.email) + '">' + esc(e.email) + '</a>';
+  var cz = $('contact-zone');
+  if (cz) cz.textContent = ((C.zone && C.zone.pays) || []).join(', ');
+
+  /* ── Surtitre du hero : affiché seulement s'il existe ── */
+  var sur = document.querySelector('.hero__sur');
+  if (sur && C.hero && C.hero.surtitre) sur.hidden = false;
 
   /* ── Hero ────────────────────────────────────────────── */
   if (C.hero && C.hero.image) $('hero-img').src = C.hero.image;
   if (C.hero && C.hero.image_mobile) $('hero-src-m').srcset = C.hero.image_mobile;
-
-  /* ── Piliers ─────────────────────────────────────────── */
-  $('pillars').innerHTML = (C.piliers || []).map(function (p) {
-    return '<div class="pillars__it"><p class="pillars__s">' + esc(p.surtitre) +
-           '</p><p class="pillars__t">' + esc(p.titre) + '</p></div>';
-  }).join('');
 
   /* ── Tuiles prestations ──────────────────────────────── */
   $('tiles').innerHTML = (C.prestations || []).map(function (s) {
@@ -106,7 +112,8 @@
   if (C.contact && C.contact.formulaire_url) {
     form.hidden = false; form.action = C.contact.formulaire_url; form.method = 'POST';
   } else {
-    document.querySelector('.contact').classList.add('is-solo');
+    /* pas de formulaire : la carte se recentre sur une colonne */
+    document.querySelector('.ct').classList.add('is-solo');
   }
 
   /* ── Pied de page ────────────────────────────────────── */

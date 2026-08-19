@@ -42,12 +42,13 @@ const CONTENU = {
      ✓ "Votre salle de bain refaite en 8 jours, dans les Landes"
      ──────────────────────────────────────────────────────────────── */
   hero: {
-    surtitre: "ARTISAN DEPUIS 2012",
+    // Laisse vide pour ne rien afficher au-dessus du titre.
+    surtitre: "",
     // Le H1 : court, il doit accrocher. Le détail va dans le sous-titre.
     titre: "Un artisan de confiance pour tous vos projets",
     // Le sous-titre porte la promesse complète : à qui je parle,
     // ce qui les bloque aujourd'hui, ce qu'ils obtiennent, et sans quoi.
-    sous_titre: "Vous voulez rénover sans relancer dix fois, sans devis qui gonfle en cours de route et sans chantier qui traîne six mois. Un seul interlocuteur, du premier coup de pioche à la remise des clés.",
+    sous_titre: "Vous voulez rénover sans relancer dix fois, sans devis qui gonfle en cours de route et sans chantier qui traîne six mois.",
     bouton: "Demander un devis gratuit",
     bouton2: "Voir nos chantiers",
     // Deux versions de la photo d'accueil : large pour ordinateur,
@@ -332,8 +333,9 @@ const CONTENU = {
 
   /* ─── 14. LE CONTACT ─────────────────────────────────────────── */
   contact: {
-    titre: "Parlons de votre projet",
-    texte: "Appelez directement, ou laissez un message : on rappelle dans la journée.",
+    surtitre: "PARLONS-EN",
+    titre: "Un appel, et vous saurez où vous en êtes.",
+    texte: "Dites-nous ce que vous voulez faire. On vous dit franchement si c'est pour nous, sous quel délai, et ce que ça implique. Sans engagement.",
     horaires: "Du lundi au vendredi, 8h — 18h",
     // Va sur formspree.io (gratuit), crée un formulaire, colle l'adresse ici.
     // Tant que c'est vide, seul le téléphone s'affiche.

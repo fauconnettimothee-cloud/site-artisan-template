@@ -21,3 +21,8 @@
 - 2026-08-19 · Bande des 3 piliers (SAVOIR-FAIRE/ENGAGEMENT/GARANTIE) MASQUEE sur mobile (jugee moche et illisible). Visible seulement sur ordinateur.
 - 2026-08-19 · Section zone refaite : carte Leaflet+OSM centree Europe, point Grenoble + cercle 90 km, 3 pays (France/Belgique/Suisse) + questionnaire 4 questions (la region depend du pays) qui genere un message WhatsApp pre-rempli via wa.me. Numero dans contenu.js -> entreprise.whatsapp (format international sans +).
 - 2026-08-19 · Tuiles « Quels travaux » : 4 pieces + 3 metiers (plomberie/carrelage/peinture, images de Tim dans images/metiers/).
+- 2026-08-19 · Bande des 3 piliers SUPPRIMEE definitivement (PC + mobile) — jugee moche par Tim.
+- 2026-08-19 · CTA sortis du hero : barre d'action `.ctabar` juste SOUS la photo (2 boutons + telephone). Le hero ne porte plus que surtitre/H1/sous-titre, pour ne pas masquer l'image. Hero raccourci a 86svh (PC) / 72svh (mobile).
+- 2026-08-19 · Surtitre du hero vide par defaut (« ARTISAN DEPUIS 2012 » retire). Il ne s'affiche que si `hero.surtitre` est rempli.
+- 2026-08-19 · Contact + sticky CTA refaits selon /apple-design : carte translucide `backdrop-filter` sur fond sombre + halo dore, sticky bar = pastille flottante en verre sombre (JAMAIS jaune : sur la section contact jaune elle devenait invisible), feedback `:active{scale(.975)}` sur les boutons.
+- 2026-08-19 · PIEGE PAYE : mettre `textContent` sur un lien telephone qui CONTIENT des sous-elements (icone + span) efface son contenu. Separer les liens simples (href+libelle) des liens composes (href seul).
