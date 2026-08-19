@@ -22,6 +22,22 @@
   var bg = function (el, url) { if (el && url) el.style.backgroundImage = 'url("' + url + '")'; };
   var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
+  /* « Votre salle de bain » → « salle-de-bain » : sert d'ancre dans l'URL
+     et de libellé court pour la rangée de mots sous les boutons. */
+  var court = function (t) {
+    return String(t || '').replace(/^(Votre|Vos|Le|La|Les|L')\s*/i, '').trim();
+  };
+  var slug = function (t) {
+    return court(t).toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  };
+  /* deux familles d'ancres distinctes : un chantier et une tuile peuvent
+     porter le même libellé, un id doit rester unique dans la page */
+  var ancreChantier = function (t) { return 'c-' + slug(t); };
+  var ancreTuile    = function (t) { return 'p-' + slug(t); };
+  var cap = function (t) { var x = court(t); return x.charAt(0).toUpperCase() + x.slice(1); };
+
   /* ── Textes simples ──────────────────────────────────── */
   document.querySelectorAll('[data-c]').forEach(function (el) {
     var v = get(el.getAttribute('data-c'));
@@ -91,15 +107,13 @@
 
   /* ── Tuiles prestations ──────────────────────────────── */
   $('tiles').innerHTML = (C.prestations || []).map(function (s) {
-    return '<article class="tile reveal"><div class="tile__bg" style="background-image:url(\'' + esc(s.image) +
-           '\')"></div><div class="tile__cap"><h3 class="tile__t">' + esc(s.titre) +
-           '</h3><span class="tile__go">DEMANDER UN DEVIS →</span></div></article>';
+    /* un vrai lien, pas un bloc écoutant le clic : accessible au clavier,
+       ouvrable dans un onglet, et fonctionne quoi qu'il arrive */
+    return '<a class="tile reveal" id="' + ancreTuile(s.titre) + '" href="#contact">' +
+           '<span class="tile__bg" style="background-image:url(\'' + esc(s.image) + '\')"></span>' +
+           '<span class="tile__cap"><span class="tile__t">' + esc(s.titre) + '</span>' +
+           '<span class="tile__go">DEMANDER UN DEVIS →</span></span></a>';
   }).join('');
-  $('tiles').querySelectorAll('.tile').forEach(function (t) {
-    t.addEventListener('click', function () { location.hash = '#contact'; });
-    t.style.cursor = 'pointer';
-  });
-
   /* Remplit toujours la derniere ligne : grille de 12 colonnes,
      4 tuiles par ligne, et la ligne incomplete s'etale. */
   var etaler = function (sel, parLigne) {
@@ -111,6 +125,32 @@
     });
   };
   etaler('.tiles .tile', 4);
+
+  /* ── Rangée de mots sous les boutons ─────────────────── */
+  (function () {
+    var zone = $('ctabar-mots');
+    if (!zone) return;
+    if (C.hero && C.hero.raccourcis === false) { zone.remove(); return; }
+
+    var vus = {}, mots = [];
+    /* un chantier avant/après est plus parlant qu'une tuile : il passe devant */
+    ((C.avantapres && C.avantapres.chantiers) || []).forEach(function (x) {
+      if (!x || !x.titre) return;
+      var cle = slug(x.titre);
+      if (vus[cle]) return;
+      vus[cle] = 1;
+      mots.push('<a href="#' + ancreChantier(x.titre) + '">' + esc(cap(x.titre)) + '</a>');
+    });
+    (C.prestations || []).forEach(function (x) {
+      if (!x || !x.titre) return;
+      var cle = slug(x.titre);
+      if (vus[cle]) return;
+      vus[cle] = 1;
+      mots.push('<a href="#' + ancreTuile(x.titre) + '">' + esc(cap(x.titre)) + '</a>');
+    });
+    if (!mots.length) { zone.remove(); return; }
+    zone.innerHTML = mots.join('<span aria-hidden="true">·</span>');
+  })();
 
   /* ── Avis : masqués s'il n'y en a aucun de réel ──────── */
   if (C.avis && C.avis.length) {
@@ -167,7 +207,7 @@
     liste.innerHTML = chantiers.map(function (c, i) {
       var meta = [c.lieu, c.duree].filter(Boolean)
                  .map(function (x, k) { return k ? '<b>' + esc(x) + '</b>' : esc(x); }).join(' · ');
-      return '<article class="ba reveal" data-i="' + i + '">' +
+      return '<article class="ba reveal" id="' + ancreChantier(c.titre) + '" data-i="' + i + '">' +
         '<div class="ba__head">' +
           '<span class="ba__num">' + ('0' + (i + 1)).slice(-2) + '</span>' +
           '<div class="ba__meta">' +

@@ -50,7 +50,11 @@ const CONTENU = {
     // ce qui les bloque aujourd'hui, ce qu'ils obtiennent, et sans quoi.
     sous_titre: "Vous voulez rénover sans relancer dix fois, sans devis qui gonfle en cours de route et sans chantier qui traîne six mois.",
     bouton: "Demander un devis gratuit",
-    bouton2: "Voir nos chantiers",
+    // Sous les boutons, une rangée de mots cliquables (salle de bain,
+    // cuisine, plomberie…) qui mènent aux sections correspondantes.
+    // Elle se construit toute seule à partir des chantiers et des
+    // prestations plus bas. Mets false pour ne pas l'afficher.
+    raccourcis: true,
     // Deux versions de la photo d'accueil : large pour ordinateur,
     // haute pour telephone. Remplace les deux fichiers dans images/.
     // La photo d'accueil, en deux formats : large pour ordinateur,

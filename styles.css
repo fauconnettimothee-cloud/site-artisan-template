@@ -98,7 +98,8 @@ a{color:inherit;text-decoration:none}
 .hero__veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.24) 0%,transparent 16%,transparent 84%,rgba(0,0,0,.30) 100%)}
 
 .hero__in{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:flex-end;
-  width:min(100% - 3.4rem,100%);max-width:none;padding-bottom:2.6rem}
+  align-items:center;text-align:center;
+  width:min(100% - 7rem,1560px);margin-inline:auto;padding-bottom:2.8rem}
 .hero__in>*{opacity:0;transform:translateY(24px);animation:heroReveal 1s var(--e) forwards}
 .hero__in>*:nth-child(1){animation-delay:.15s}
 .hero__in>*:nth-child(2){animation-delay:.30s}
@@ -123,6 +124,20 @@ a{color:inherit;text-decoration:none}
   background:radial-gradient(ellipse 60% 140% at 50% 120%,rgba(251,190,63,.10),transparent 70%)}
 .ctabar__in{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.9rem;padding:1.45rem 0}
 .ctabar__tel{color:var(--gold);font-weight:800;font-size:1.05rem;margin-left:.6rem;white-space:nowrap}
+
+/* Rangée de mots : des liens fins, pas des boutons — on informe sans alourdir */
+.ctabar__mots{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;
+  justify-content:center;gap:.15rem .85rem;padding:0 0 1.3rem}
+.ctabar__mots a{color:rgba(255,255,255,.62);font-size:.86rem;font-weight:600;letter-spacing:.01em;
+  padding:.2rem 0;position:relative;transition:color .22s ease}
+.ctabar__mots a::after{content:'';position:absolute;inset:auto 0 .05rem;height:1px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .28s var(--e)}
+.ctabar__mots a:hover{color:#fff}
+.ctabar__mots a:hover::after{transform:scaleX(1)}
+.ctabar__mots span{color:rgba(255,255,255,.22);font-size:.8rem;user-select:none}
+
+/* la nav est fixe : on décale l'arrivée pour ne pas cacher le titre visé */
+.ba,.tile{scroll-margin-top:5.5rem}
 .ctabar__tel:hover{color:#fff}
 
 /* ── Sections & titres ─────────────────────────────────── */
@@ -142,13 +157,14 @@ a{color:inherit;text-decoration:none}
 
 /* ── Tuiles prestations (hover-zoom) ───────────────────── */
 .tiles{display:grid;grid-template-columns:repeat(12,1fr);gap:2px}
-.tile{position:relative;aspect-ratio:1/1;overflow:hidden;display:flex;align-items:flex-end;background:var(--ink)}
+.tile{position:relative;aspect-ratio:1/1;overflow:hidden;display:flex;align-items:flex-end;background:var(--ink);cursor:pointer}
+.tile:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
 .tile__bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);transition:transform 1.2s var(--e)}
 .tile:hover .tile__bg{transform:scale(1.12)}
 .tile::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.10) 45%,rgba(0,0,0,.82) 100%)}
 .tile{border-radius:var(--r-s)}
-.tile__cap{position:relative;z-index:2;padding:1.7rem}
-.tile__t{font-family:var(--f-t);color:#fff;font-size:1.2rem;font-weight:600;line-height:1.25}
+.tile__cap{position:relative;z-index:2;padding:1.7rem;display:block;width:100%}
+.tile__t{display:block;font-family:var(--f-t);color:#fff;font-size:1.2rem;font-weight:600;line-height:1.25}
 .tile__go{display:inline-flex;align-items:center;gap:.4rem;color:var(--gold);font-size:.72rem;font-weight:800;letter-spacing:.16em;margin-top:.5rem;opacity:0;transform:translateY(6px);transition:opacity .3s ease,transform .3s var(--e)}
 .tile:hover .tile__go{opacity:1;transform:none}
 
@@ -344,7 +360,9 @@ a{color:inherit;text-decoration:none}
   .hero__in{width:min(100% - 2rem,100%);max-width:100%;flex:none;padding-bottom:1.6rem;text-align:center}
   .hero__h1{font-size:1.92rem;line-height:1.14;max-width:100%;margin-bottom:.8rem}
   .hero__sub{font-size:.95rem;max-width:100%;margin-bottom:1.5rem}
-  .ctabar__in{flex-direction:column;align-items:stretch;gap:.6rem;padding:1.1rem 0}
+  .ctabar__in{flex-direction:column;align-items:stretch;gap:.6rem;padding:1.1rem 0 .9rem}
+  .ctabar__mots{gap:.1rem .7rem;padding-bottom:1.1rem}
+  .ctabar__mots a{font-size:.8rem}
   .ctabar__in .btn{width:100%}
   .ctabar__tel{margin:.3rem 0 0;text-align:center;font-size:1.15rem}
 
