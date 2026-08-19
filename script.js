@@ -98,38 +98,15 @@
 
   etaler('.works .work', 3);
 
-  /* ── Chiffres : masqués si la liste est vide ─────────── */
-  if (C.chiffres && C.chiffres.length) {
-    $('chiffres').hidden = false;
-    bg($('stats-bg'), C.chiffres_image);
-    $('stats-grid').innerHTML = C.chiffres.map(function (s) {
-      return '<div class="stats__it"><p class="stats__n" data-n="' + esc(s.nombre) + '">0</p>' +
-             '<p class="stats__l">' + esc(s.label) + '</p></div>';
-    }).join('');
-  }
-
-  /* ── Équipe : masquée si la liste est vide ───────────── */
-  if (C.equipe && C.equipe.length) {
-    $('equipe').hidden = false;
-    $('team').innerHTML = C.equipe.map(function (m) {
-      return '<div class="team__it reveal"><div class="team__av"' +
-             (m.photo ? ' style="background-image:url(\'' + esc(m.photo) + '\')"' : '') +
-             '></div><p class="team__n">' + esc(m.nom) + '</p><p class="team__r">' + esc(m.role) + '</p></div>';
-    }).join('');
-  }
-
-  /* ── Bande expérience ────────────────────────────────── */
-  var bd = C.bande || {};
-  bg($('band-bg'), bd.image);
-  var bBtn = $('band-btn');
-  if (bBtn) { bBtn.href = bd.lien || '#contact'; bBtn.textContent = bd.bouton || ''; }
-
   /* ── Avis : masqués s'il n'y en a aucun de réel ──────── */
   if (C.avis && C.avis.length) {
     $('avis').hidden = false;
     $('avis-grid').innerHTML = C.avis.map(function (a) {
-      return '<blockquote class="avis__it reveal"><p class="avis__q">« ' + esc(a.texte) +
-             ' »</p><p class="avis__a">' + esc(a.auteur) + (a.role ? ' — ' + esc(a.role) : '') + '</p></blockquote>';
+      return '<figure class="temo__it reveal">' +
+             (a.photo ? '<div class="temo__ph" style="background-image:url(&quot;' + esc(a.photo) + '&quot;)"></div>' : '') +
+             '<blockquote class="temo__q">« ' + esc(a.texte) + ' »</blockquote>' +
+             '<figcaption class="temo__who"><span class="temo__n">' + esc(a.auteur) + '</span>' +
+             (a.role ? '<span class="temo__r">' + esc(a.role) + '</span>' : '') + '</figcaption></figure>';
     }).join('');
   }
 
@@ -301,9 +278,6 @@
 
   var nav = $('nav'), callbar = $('callbar'), hero = $('hero'), bar = $('progress');
   var bands = [];
-  var sb = $('stats-bg'), bb = $('band-bg');
-  if (sb) bands.push(sb);
-  if (bb) bands.push(bb);
 
   var ticking = false;
   var onScroll = function () {
@@ -345,25 +319,6 @@
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
   document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-
-  /* ── Compteurs animés ────────────────────────────────── */
-  var cio = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en) {
-      if (!en.isIntersecting) return;
-      var el = en.target, cible = parseInt(el.dataset.n, 10);
-      cio.unobserve(el);
-      if (isNaN(cible) || reduce) { el.textContent = el.dataset.n; return; }
-      var t0 = null, dur = 1400;
-      var step = function (t) {
-        if (!t0) t0 = t;
-        var p = Math.min((t - t0) / dur, 1);
-        el.textContent = Math.round(cible * (1 - Math.pow(1 - p, 3)));
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('.stats__n').forEach(function (el) { cio.observe(el); });
 
   /* ── Menu mobile ─────────────────────────────────────── */
   var burger = $('burger');

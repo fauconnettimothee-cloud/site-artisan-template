@@ -29,7 +29,6 @@ Dans le dossier **`images/`**, remplace les images d'attente par les tiennes,
 | Fichier | Ce qu'il faut mettre |
 |---|---|
 | `hero.jpg` | Ton plus beau chantier terminé, en pleine lumière. C'est la première image que le visiteur voit. |
-| `artisan.jpg` | Toi, en tenue de travail, sur un chantier. Pas en costume, pas de photo d'identité. |
 | `chantier-1.jpg` à `chantier-6.jpg` | Six chantiers finis. Un téléphone récent suffit : lumière du jour, photo prise droite, pièce rangée. |
 | `avant.jpg` + `apres.jpg` | **Les deux plus importantes.** Le même chantier photographié depuis le **même endroit**, avant puis après. C'est ce cadrage identique qui rend la comparaison spectaculaire. |
 
@@ -42,6 +41,19 @@ de la pièce depuis la porte. À la fin, remets-toi exactement au même endroit 
 reprends la même photo. Ces deux images valent plus que trois paragraphes de
 texte sur ton savoir-faire — c'est la section que les visiteurs regardent
 le plus longtemps.
+
+---
+
+## Les sections du site, dans l'ordre
+
+1. **Accueil** — photo, promesse, deux boutons
+2. **Avant / après** — quatre chantiers comparés
+3. **Quels travaux** — les pièces sur lesquelles tu interviens
+4. **Réalisations** — la galerie
+5. **Le quiz** — situe le projet du visiteur
+6. **Avis** — tes vrais clients
+7. **Zone d'intervention** — tes villes
+8. **Contact** — téléphone en gros
 
 ---
 

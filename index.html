@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
 
@@ -41,55 +41,14 @@
     <p class="hero__sur" data-c="hero.surtitre"></p>
     <h1 class="hero__h1" data-c="hero.titre"></h1>
     <p class="hero__sub" data-c="hero.sous_titre"></p>
-    <a href="#contact" class="btn btn--gold" data-c="hero.bouton"></a>
+    <div class="hero__cta">
+      <a href="#contact" class="btn btn--gold" data-c="hero.bouton"></a>
+      <a href="#avantapres" class="btn btn--ghost" data-c="hero.bouton2"></a>
+    </div>
   </div>
   <div class="wrap hero__pillars"><div class="pillars" id="pillars"></div></div>
+  <div class="hero__scroll" aria-hidden="true"><span></span></div>
 </section>
-
-<!-- ══ L'ENTREPRISE ══ -->
-<section class="sec sec--ink" id="entreprise">
-  <div class="wrap">
-    <div class="head reveal">
-      <h2 class="head__h2" data-c="entreprise_section.titre"></h2>
-      <p class="head__kick" data-c="entreprise_section.surtitre"></p>
-    </div>
-    <div class="ent">
-      <div class="ent__col reveal">
-        <h3 class="ent__t" data-c="entreprise_section.bloc1_titre"></h3>
-        <p class="ent__p" data-c="entreprise_section.bloc1_texte"></p>
-      </div>
-      <figure class="card reveal">
-        <div class="card__img" id="ent-card1"></div>
-        <figcaption class="card__cap">
-          <h3 class="card__t" data-c="entreprise_section.carte1_titre"></h3>
-          <p class="card__p" data-c="entreprise_section.carte1_texte"></p>
-        </figcaption>
-      </figure>
-    </div>
-    <div class="ent ent--2">
-      <div class="ent__duo">
-        <div class="ent__col reveal">
-          <span class="ent__ico" aria-hidden="true"></span>
-          <h3 class="ent__t" data-c="entreprise_section.bloc2_titre"></h3>
-          <p class="ent__p" data-c="entreprise_section.bloc2_texte"></p>
-        </div>
-        <div class="ent__col reveal">
-          <span class="ent__ico ent__ico--2" aria-hidden="true"></span>
-          <h3 class="ent__t" data-c="entreprise_section.bloc3_titre"></h3>
-          <p class="ent__p" data-c="entreprise_section.bloc3_texte"></p>
-        </div>
-      </div>
-      <figure class="card reveal">
-        <div class="card__img" id="ent-card2"></div>
-        <figcaption class="card__cap">
-          <h3 class="card__t" data-c="entreprise_section.carte2_titre"></h3>
-          <p class="card__p" data-c="entreprise_section.carte2_texte"></p>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
 
 <!-- ══ AVANT / APRÈS ══ -->
 <section class="sec sec--paper" id="avantapres">
@@ -105,9 +64,9 @@
 <!-- ══ PRESTATIONS ══ -->
 <section class="sec sec--paper" id="prestations">
   <div class="wrap">
-    <div class="head reveal">
+    <div class="head head--center reveal">
       <h2 class="head__h2" data-c="prestations_titre"></h2>
-      <p class="head__kick">NOS PRESTATIONS</p>
+      <p class="head__lede" data-c="prestations_intro"></p>
     </div>
   </div>
   <div class="tiles" id="tiles"></div>
@@ -140,67 +99,6 @@
   </div>
 </section>
 
-<!-- ══ QUI NOUS SOMMES ══ -->
-<section class="sec sec--paper" id="apropos">
-  <div class="wrap about">
-    <div class="about__left reveal">
-      <h2 class="about__h2" data-c="apropos.titre"></h2>
-      <a href="#contact" class="btn btn--gold" data-c="apropos.bouton"></a>
-    </div>
-    <div class="about__col reveal">
-      <h3 class="about__t" data-c="apropos.col1_titre"></h3>
-      <p class="about__p" data-c="apropos.col1_texte"></p>
-    </div>
-    <div class="about__col reveal">
-      <h3 class="about__t" data-c="apropos.col2_titre"></h3>
-      <p class="about__p" data-c="apropos.col2_texte"></p>
-    </div>
-  </div>
-  <div class="wrap"><div class="bandeau reveal">
-    <p class="bandeau__t" data-c="apropos.bandeau"></p>
-    <a href="#contact" class="btn btn--gold btn--sm">Demander un devis</a>
-  </div></div>
-</section>
-
-<!-- ══ CHIFFRES (bande parallaxe) ══ -->
-<section class="sec sec--grey" id="chiffres" hidden>
-  <div class="wrap">
-    <div class="head reveal">
-      <h2 class="head__h2" data-c="chiffres_titre"></h2>
-      <p class="head__kick" data-c="chiffres_surtitre"></p>
-    </div>
-  </div>
-  <div class="wrap">
-    <div class="stats reveal">
-      <div class="stats__bg" id="stats-bg"></div>
-      <div class="stats__veil"></div>
-      <div class="stats__grid" id="stats-grid"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ ÉQUIPE ══ -->
-<section class="sec sec--paper" id="equipe" hidden>
-  <div class="wrap">
-    <div class="head head--center reveal">
-      <h2 class="head__h2" data-c="equipe_titre"></h2>
-      <p class="head__lede" data-c="equipe_intro"></p>
-    </div>
-    <div class="team" id="team"></div>
-  </div>
-</section>
-
-<!-- ══ BANDE EXPÉRIENCE (parallaxe) ══ -->
-<section class="band" id="band">
-  <div class="band__bg" id="band-bg"></div>
-  <div class="band__veil"></div>
-  <div class="wrap band__in reveal">
-    <p class="band__sur" data-c="bande.surtitre"></p>
-    <h2 class="band__h2" data-c="bande.titre"></h2>
-    <a class="btn btn--ghost" id="band-btn"></a>
-  </div>
-</section>
-
 <!-- ══ AVIS ══ -->
 <section class="sec sec--ink" id="avis" hidden>
   <div class="wrap">
@@ -208,7 +106,7 @@
       <h2 class="head__h2" data-c="avis_titre"></h2>
       <p class="head__kick" data-c="avis_surtitre"></p>
     </div>
-    <div class="avis" id="avis-grid"></div>
+    <div class="temo" id="avis-grid"></div>
   </div>
 </section>
 
@@ -257,7 +155,7 @@
 
 <noscript><div style="padding:2rem;font-family:sans-serif">Ce site a besoin de JavaScript pour afficher son contenu.</div></noscript>
 
-<script src="contenu.js?v=3"></script>
-<script src="script.js?v=3"></script>
+<script src="contenu.js?v=4"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>

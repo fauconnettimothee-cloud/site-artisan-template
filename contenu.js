@@ -28,8 +28,7 @@ const CONTENU = {
   menu: [
     { texte: "Prestations", lien: "#prestations" },
     { texte: "Réalisations", lien: "#realisations" },
-    { texte: "L'entreprise", lien: "#entreprise" },
-    { texte: "Équipe", lien: "#equipe" },
+    { texte: "Avis", lien: "#avis" },
     { texte: "Contact", lien: "#contact" },
   ],
 
@@ -46,6 +45,7 @@ const CONTENU = {
     // ce qui les bloque aujourd'hui, ce qu'ils obtiennent, et sans quoi.
     sous_titre: "Vous voulez rénover sans relancer dix fois, sans devis qui gonfle en cours de route et sans chantier qui traîne six mois. Un seul interlocuteur, du premier coup de pioche à la remise des clés.",
     bouton: "Demander un devis gratuit",
+    bouton2: "Voir nos chantiers",
     // Deux versions de la photo d'accueil : large pour ordinateur,
     // haute pour telephone. Remplace les deux fichiers dans images/.
     image: "images/hero-desktop.jpg",
@@ -58,25 +58,6 @@ const CONTENU = {
     { surtitre: "ENGAGEMENT", titre: "Délais tenus" },
     { surtitre: "GARANTIE", titre: "Décennale incluse" },
   ],
-
-  /* ─── 5. L'ENTREPRISE — section sombre ────────────────────────── */
-  entreprise_section: {
-    surtitre: "L'ENTREPRISE",
-    titre: "Une tradition d'exigence",
-    bloc1_titre: "Qualité et finitions",
-    bloc1_texte: "Chaque chantier est mené avec les mêmes exigences, qu'il s'agisse d'une salle de bain ou d'une maison entière. Matériaux sélectionnés, finitions soignées, et un résultat qui tient dans le temps.",
-    bloc2_titre: "Une équipe qui s'entend",
-    bloc2_texte: "Nous travaillons ensemble depuis des années. Les corps de métier se coordonnent sans temps mort, ce qui raccourcit les délais et vous évite d'avoir à gérer cinq interlocuteurs.",
-    bloc3_titre: "Honnête et fiable",
-    bloc3_texte: "Un devis clair, détaillé ligne par ligne, sans surprise à la fin. Si un imprévu apparaît en cours de chantier, vous êtes prévenu avant que quoi que ce soit ne soit engagé.",
-    carte1_titre: "Les chantiers du moment",
-    carte1_texte: "De la rénovation d'appartement à l'extension de maison, nous intervenons sur toute la région. Suivez nos chantiers en cours et nos dernières réalisations.",
-    carte1_image: "images/ghl/ghl-07.jpg",
-    carte2_titre: "Construisons quelque chose de bien. Quand vous voulez.",
-    carte2_texte: "Que vous vouliez refaire une pièce, agrandir votre maison ou reprendre un bien entier, on commence par en parler. La visite et le devis ne coûtent rien.",
-    carte2_image: "images/ghl/ghl-03.jpg",
-  },
-
 
   /* ─── AVANT / APRÈS ──────────────────────────────────────────────
      LA section qui vend. On ne lit pas un artisan, on le regarde.
@@ -214,18 +195,23 @@ const CONTENU = {
     ],
   },
 
-  /* ─── 6. LES PRESTATIONS — grille de tuiles photos ────────────────
-     Entre 4 et 7. Pour en retirer une : supprime la ligne { ... },
+  /* ─── QUELS TRAVAUX ? — par pièce ───────────────────────────────
+     Le client ne pense pas « maçonnerie », il pense « ma salle de
+     bain ». On liste donc des PIÈCES, pas des corps de métier.
+
+     ⚠️ Chaque image doit montrer EXACTEMENT la pièce annoncée.
+     Une photo de toiture sous le mot « cuisine » et le visiteur
+     décroche. Vérifie chaque ligne.
      ──────────────────────────────────────────────────────────────── */
-  prestations_titre: "Rénovation complète, du sol au plafond",
+  prestations_titre: "Quels travaux peut-on faire chez vous ?",
+  prestations_intro: "Si vous avez des travaux à faire dans l'une de ces pièces, on peut vous aider.",
   prestations: [
-    { titre: "Rénovation complète", image: "images/ghl/ghl-02.jpg" },
-    { titre: "Salle de bain", image: "images/ghl/ghl-10.jpg" },
-    { titre: "Maçonnerie & extension", image: "images/ghl/ghl-07.jpg" },
-    { titre: "Aménagement intérieur", image: "images/ghl/ghl-08.jpg" },
-    { titre: "Charpente & toiture", image: "images/ghl/ghl-09.jpg" },
-    { titre: "Peinture & finitions", image: "images/ghl/ghl-01.jpg" },
-    { titre: "Toutes nos prestations", image: "images/ghl/ghl-04.jpg" },
+    { titre: "Votre salle de bain",    image: "images/chantiers/sdb-apres.jpg" },
+    { titre: "Votre cuisine",          image: "images/chantiers/cuisine-apres.jpg" },
+    { titre: "Votre salle à manger",   image: "images/chantiers/sejour-apres.jpg" },
+    { titre: "Votre balcon",           image: "images/chantiers/balcon-apres.jpg" },
+    { titre: "Votre entrée",           image: "images/ghl/ghl-10.jpg" },
+    { titre: "Votre toiture",          image: "images/ghl/ghl-09.jpg" },
   ],
 
   /* ─── 7. LES RÉALISATIONS — la section la plus importante ─────────
@@ -244,65 +230,25 @@ const CONTENU = {
     { categorie: "NEUF", titre: "Maison contemporaine", lieu: "Hagetmau", image: "images/ghl/ghl-08.jpg" },
   ],
 
-  /* ─── 8. QUI NOUS SOMMES ──────────────────────────────────────── */
-  apropos: {
-    titre: "L'artisan derrière le chantier",
-    bouton: "Demander un devis",
-    col1_titre: "NOTRE HISTOIRE",
-    col1_texte: "J'ai commencé sur les chantiers à 18 ans et monté l'entreprise en 2012, après dix ans passés chez les autres. Ce qui m'a décidé : voir trop de clients laissés sans nouvelles pendant trois semaines au milieu d'un chantier.",
-    col2_titre: "NOTRE FAÇON DE TRAVAILLER",
-    col2_texte: "La personne qui vient faire le devis est celle qui tient la truelle. Vous avez mon numéro de portable et je réponds. Le chantier est balayé tous les soirs, et les gravats partent à la fin.",
-    bandeau: "Votre chantier, mené du premier coup de pioche à la dernière couche de peinture.",
-  },
+  /* ─── LES AVIS ──────────────────────────────────────────────────
+     ⚠️ N'INVENTE JAMAIS UN AVIS. C'est une pratique commerciale
+     trompeuse (article L121-2 du code de la consommation) et les
+     clients repèrent les faux en trois secondes.
 
-  /* ─── 9. LES CHIFFRES — bande photo ──────────────────────────────
-     ⚠️ Mets tes VRAIS chiffres. Un chiffre inventé se retourne
-     contre toi le jour où un client te le demande en face.
-     Pour masquer complètement cette bande : chiffres: [],
-     ──────────────────────────────────────────────────────────────── */
-  chiffres_surtitre: "EN QUELQUES CHIFFRES",
-  chiffres_titre: "Une entreprise à taille humaine",
-  chiffres_image: "images/ghl/ghl-06.jpg",
-  chiffres: [
-    { nombre: "180", label: "CHANTIERS" },
-    { nombre: "14", label: "ANNÉES" },
-    { nombre: "4", label: "COMPAGNONS" },
-  ],
-
-  /* ─── 10. L'ÉQUIPE ───────────────────────────────────────────────
-     Tu travailles seul ? Mets simplement equipe: [],
-     et la section disparaît du site.
-     ──────────────────────────────────────────────────────────────── */
-  equipe_titre: "L'équipe",
-  equipe_intro: "Les compagnons qui interviennent sur vos chantiers.",
-  equipe: [
-    { nom: "Prénom Nom", role: "Gérant, maçon" },
-    { nom: "Prénom Nom", role: "Plaquiste" },
-    { nom: "Prénom Nom", role: "Carreleur" },
-    { nom: "Prénom Nom", role: "Peintre" },
-  ],
-
-  /* ─── 11. LA BANDE D'EXPÉRIENCE ──────────────────────────────── */
-  bande: {
-    surtitre: "AVEC NOUS",
-    titre: "Plus de 14 ans sur les chantiers de la région",
-    bouton: "Voir nos réalisations",
-    lien: "#realisations",
-    image: "images/ghl/ghl-04.jpg",
-  },
-
-  /* ─── 12. LES AVIS CLIENTS ───────────────────────────────────────
-     ⚠️ INTERDIT D'EN INVENTER. C'est une pratique commerciale
-     trompeuse (article L121-2 du code de la consommation), et les
-     clients repèrent les faux avis en trois secondes.
-
-     Tant que la liste est vide, la section disparaît toute seule.
-     Quand tu en as un vrai :
-     avis: [ { texte: "...", auteur: "Marie L.", role: "Saint-Sever" } ],
+     Mets ici de VRAIS clients, avec leurs mots à eux. Demande-leur
+     l'autorisation pour la photo — un visage vaut trois étoiles.
+     Pas encore d'avis ? Mets avis: [] et la section disparaît.
      ──────────────────────────────────────────────────────────────── */
   avis_surtitre: "AVIS CLIENTS",
-  avis_titre: "Ce que disent nos clients",
-  avis: [],
+  avis_titre: "Ce que disent ceux qui nous ont fait confiance",
+  avis: [
+    {
+      texte: "Rien à redire, ni sur l'artisan ni sur son équipe. Rigoureux du début à la fin, et surtout proactifs : quand un imprévu est tombé, ils sont arrivés avec la solution avant même que je pose la question. Efficaces, et le chantier a avancé sans que j'aie à courir derrière qui que ce soit.",
+      auteur: "Sofiane",
+      role: "Grenoble",
+      photo: "images/avis/soso.jpg",
+    },
+  ],
 
   /* ─── 13. LA ZONE D'INTERVENTION ─────────────────────────────────
      C'est ce que Google lit pour te faire remonter sur
