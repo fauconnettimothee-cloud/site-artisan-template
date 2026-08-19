@@ -14,3 +14,6 @@
 - 2026-08-19 · Hero = photo split avant/apres fournie par Tim, 2 formats : images/hero-desktop.jpg (2200x1227) + images/hero-mobile.jpg (1200x1607), servis par <picture> media=(max-width:768px).
 - 2026-08-19 · Voile du hero : degrade LATERAL (90deg) obligatoire — le texte blanc devenait illisible sur la moitie droite claire de la photo. Le texte tient dans les 640 px de gauche (cote chantier), le regard file vers le resultat a droite.
 - 2026-08-19 · 4 comparateurs avant/apres numerotes (salle de bain, cuisine, salle a manger, balcon), images de Tim dans images/chantiers/. Balayage decale de 2,2 s entre chaque comparateur pour que l'oeil accroche.
+- 2026-08-19 · Sections SUPPRIMEES a la demande de Tim (ne pas les reintroduire) : « Une tradition d'exigence » (entreprise), « L'artisan derriere le chantier » (apropos), « Une entreprise a taille humaine » (chiffres), « L'equipe », bande « Plus de 14 ans », et « Chantiers termines » (realisations, jugee redondante avec les 4 comparateurs avant/apres).
+- 2026-08-19 · Structure finale : hero > avantapres > prestations(par PIECE) > quiz > avis > zone > contact.
+- 2026-08-19 · Temoignage reel : Sofiane, Grenoble (ami de Tim), photo images/avis/soso.jpg.

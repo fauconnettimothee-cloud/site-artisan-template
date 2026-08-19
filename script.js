@@ -60,11 +60,6 @@
            '</p><p class="pillars__t">' + esc(p.titre) + '</p></div>';
   }).join('');
 
-  /* ── Cartes entreprise ───────────────────────────────── */
-  var es = C.entreprise_section || {};
-  bg($('ent-card1'), es.carte1_image);
-  bg($('ent-card2'), es.carte2_image);
-
   /* ── Tuiles prestations ──────────────────────────────── */
   $('tiles').innerHTML = (C.prestations || []).map(function (s) {
     return '<article class="tile reveal"><div class="tile__bg" style="background-image:url(\'' + esc(s.image) +
@@ -87,16 +82,6 @@
     });
   };
   etaler('.tiles .tile', 4);
-
-  /* ── Réalisations ────────────────────────────────────── */
-  $('works').innerHTML = (C.realisations || []).map(function (w) {
-    return '<article class="work reveal"><div class="work__bg" style="background-image:url(\'' + esc(w.image) +
-           '\')"></div><div class="work__cap"><p class="work__c">' + esc(w.categorie) +
-           '</p><h3 class="work__t">' + esc(w.titre) + '</h3><p class="work__l">' + esc(w.lieu) +
-           '</p></div></article>';
-  }).join('');
-
-  etaler('.works .work', 3);
 
   /* ── Avis : masqués s'il n'y en a aucun de réel ──────── */
   if (C.avis && C.avis.length) {

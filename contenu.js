@@ -26,8 +26,8 @@ const CONTENU = {
 
   /* ─── 2. LE MENU DU HAUT ──────────────────────────────────────── */
   menu: [
-    { texte: "Prestations", lien: "#prestations" },
-    { texte: "Réalisations", lien: "#realisations" },
+    { texte: "Avant / après", lien: "#avantapres" },
+    { texte: "Ce qu'on fait", lien: "#prestations" },
     { texte: "Avis", lien: "#avis" },
     { texte: "Contact", lien: "#contact" },
   ],
@@ -212,22 +212,6 @@ const CONTENU = {
     { titre: "Votre balcon",           image: "images/chantiers/balcon-apres.jpg" },
     { titre: "Votre entrée",           image: "images/ghl/ghl-10.jpg" },
     { titre: "Votre toiture",          image: "images/ghl/ghl-09.jpg" },
-  ],
-
-  /* ─── 7. LES RÉALISATIONS — la section la plus importante ─────────
-     Des photos de VRAIS chantiers. Un téléphone récent suffit :
-     lumière du jour, photo prise droite, pièce rangée.
-     ──────────────────────────────────────────────────────────────── */
-  realisations_surtitre: "RÉALISATIONS",
-  realisations_titre: "Chantiers terminés",
-  realisations_intro: "Quelques chantiers menés ces dernières années, du studio à la maison de bourg.",
-  realisations: [
-    { categorie: "RÉNOVATION", titre: "Maison de bourg", lieu: "Saint-Sever", image: "images/ghl/ghl-01.jpg" },
-    { categorie: "SALLE DE BAIN", titre: "Salle de bain complète", lieu: "Mont-de-Marsan", image: "images/ghl/ghl-10.jpg" },
-    { categorie: "EXTENSION", titre: "Extension de 28 m²", lieu: "Aire-sur-l'Adour", image: "images/ghl/ghl-07.jpg" },
-    { categorie: "INTÉRIEUR", titre: "Séjour ouvert", lieu: "Grenade-sur-l'Adour", image: "images/ghl/ghl-02.jpg" },
-    { categorie: "TOITURE", titre: "Réfection de couverture", lieu: "Villeneuve-de-Marsan", image: "images/ghl/ghl-09.jpg" },
-    { categorie: "NEUF", titre: "Maison contemporaine", lieu: "Hagetmau", image: "images/ghl/ghl-08.jpg" },
   ],
 
   /* ─── LES AVIS ──────────────────────────────────────────────────
