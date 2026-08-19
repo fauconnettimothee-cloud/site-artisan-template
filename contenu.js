@@ -55,8 +55,8 @@ const CONTENU = {
     // haute pour telephone. Remplace les deux fichiers dans images/.
     // La photo d'accueil, en deux formats : large pour ordinateur,
     // haute pour téléphone.
-    image: "images/hero-desktop.jpg",
-    image_mobile: "images/hero-mobile.jpg",
+    image: "images/hero-apres-desktop.jpg",
+    image_mobile: "images/hero-apres-mobile.jpg",
 
     // ── Accueil animé « avant / après » (facultatif) ──
     // Renseigne ces deux lignes pour que la photo d'accueil se
@@ -64,8 +64,8 @@ const CONTENU = {
     // Il faut DEUX photos ENTIÈRES de la même pièce, prises du
     // MÊME endroit : une avant les travaux, une après.
     // Laisse vide ("") pour une photo d'accueil fixe.
-    image_avant: "",
-    image_avant_mobile: "",
+    image_avant: "images/hero-avant-desktop.jpg",
+    image_avant_mobile: "images/hero-avant-mobile.jpg",
   },
 
   /* ─── AVANT / APRÈS ──────────────────────────────────────────────
