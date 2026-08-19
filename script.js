@@ -95,8 +95,9 @@
     }).join('');
   }
 
-  /* ── Zone ────────────────────────────────────────────── */
-  $('zone-list').innerHTML = ((C.zone && C.zone.villes) || []).map(function (v) {
+  /* ── Zone : pays d'intervention ──────────────────────── */
+  var pl = $('geo-pays');
+  if (pl) pl.innerHTML = ((C.zone && C.zone.pays) || []).map(function (v) {
     return '<li>' + esc(v) + '</li>';
   }).join('');
 
@@ -254,6 +255,91 @@
         });
       });
       var back = body.querySelector('.qz__back');
+      if (back) back.addEventListener('click', function () { i--; poser(); });
+    };
+    poser();
+  })();
+
+
+  /* ═══ CARTE ═══════════════════════════════════════════
+     Leaflet + OpenStreetMap. setView AVANT d'ajouter les
+     couches, sinon la projection plante. */
+  (function () {
+    var el = $('map'), z = C.zone || {};
+    if (!el || z.latitude == null) return;
+    var demarre = function () {
+      if (typeof L === 'undefined') return setTimeout(demarre, 200);
+      var centre = [z.latitude, z.longitude];
+      var map = L.map(el, {
+        dragging: false, scrollWheelZoom: false, doubleClickZoom: false,
+        boxZoom: false, keyboard: false, zoomControl: false, attributionControl: true
+      });
+      map.setView([47.2, 4.6], 5);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap', maxZoom: 12
+      }).addTo(map);
+      L.circle(centre, { radius: 90000, color: '#FBBE3F', weight: 2, fillColor: '#FBBE3F', fillOpacity: .16 }).addTo(map);
+      L.marker(centre).addTo(map).bindTooltip(C.entreprise.ville || '', { permanent: true, direction: 'top', className: 'geo__tip' });
+      setTimeout(function () { map.invalidateSize(); }, 300);
+    };
+    demarre();
+  })();
+
+  /* ═══ QUESTIONNAIRE → WHATSAPP ════════════════════════
+     4 questions, la 2ᵉ s'adapte au pays choisi, puis le
+     message part tout rédigé sur WhatsApp. */
+  (function () {
+    var g = C.geo || {}, body = $('gq-body'), fill = $('gq-fill');
+    if (!body || !g.questions || !g.questions.length) {
+      if (body) body.closest('#zone') && (body.closest('.geo__right').style.display = 'none');
+      return;
+    }
+    var i = 0, rep = {};
+    var wa = (C.entreprise && C.entreprise.whatsapp || '').replace(/[^0-9]/g, '');
+
+    var ICONE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1s-.5-.1-.7.2-.8 1-.9 1.1-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.5.1-.6l.5-.6.3-.5v-.5l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.2 3.4 5.4 4.7.7.3 1.3.5 1.8.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4l-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>';
+
+    var resultat = function () {
+      fill.style.width = '100%';
+      var lignes = (g.message || []).map(function (l) {
+        return l.replace(/\{(\w+)\}/g, function (_, k) { return rep[k] || ''; });
+      });
+      var texte = lignes.join('\n');
+      body.innerHTML =
+        '<p class="gq__rt">' + esc(g.recap_titre || 'Votre message est prêt') + '</p>' +
+        '<p class="gq__rs">' + esc(g.recap_texte || '') + '</p>' +
+        '<div class="gq__recap">' + esc(texte) + '</div>' +
+        '<a class="gq__wa" target="_blank" rel="noopener" href="https://wa.me/' + wa +
+          '?text=' + encodeURIComponent(texte) + '">' + ICONE + esc(g.bouton || 'Envoyer sur WhatsApp') + '</a>' +
+        '<button class="gq__again" type="button">Recommencer</button>';
+      body.querySelector('.gq__again').addEventListener('click', function () { i = 0; rep = {}; poser(); });
+    };
+
+    var poser = function () {
+      if (i >= g.questions.length) return resultat();
+      var q = g.questions[i];
+      /* la question « région » se construit à partir du pays répondu */
+      var choix = q.selon_pays ? (q.selon_pays[rep[g.questions[i - 1].cle]] || []).map(function (t) { return { texte: t }; })
+                               : (q.reponses || []);
+      if (!choix.length) { i++; return poser(); }
+      var large = choix.length > 6;
+      fill.style.width = ((i / g.questions.length) * 100) + '%';
+      body.innerHTML =
+        '<p class="gq__step">QUESTION ' + (i + 1) + ' / ' + g.questions.length + '</p>' +
+        '<h4 class="gq__q">' + esc(q.question) + '</h4>' +
+        '<div class="gq__opts' + (large ? ' gq__grid' : '') + '">' + choix.map(function (r, k) {
+          return '<button class="gq__opt" type="button" data-k="' + k + '">' +
+                 (large ? '' : '<span class="gq__dot"></span>') + esc(r.texte) + '</button>';
+        }).join('') + '</div>' +
+        (i > 0 ? '<button class="gq__back" type="button">← Retour</button>' : '');
+
+      body.querySelectorAll('.gq__opt').forEach(function (b) {
+        b.addEventListener('click', function () {
+          rep[q.cle] = choix[+b.dataset.k].texte;
+          i++; poser();
+        });
+      });
+      var back = body.querySelector('.gq__back');
       if (back) back.addEventListener('click', function () { i--; poser(); });
     };
     poser();

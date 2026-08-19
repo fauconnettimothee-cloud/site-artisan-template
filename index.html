@@ -9,7 +9,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
 
@@ -97,15 +99,27 @@
   </div>
 </section>
 
-<!-- ══ ZONE ══ -->
+<!-- ══ ZONE + QUESTIONNAIRE WHATSAPP ══ -->
 <section class="sec sec--paper" id="zone">
   <div class="wrap">
-    <div class="head reveal">
+    <div class="head head--center reveal">
       <h2 class="head__h2" data-c="zone.titre"></h2>
-      <p class="head__kick">ZONE D'INTERVENTION</p>
-      <p class="head__lede" data-c="zone.rayon"></p>
+      <p class="head__lede" data-c="zone.texte"></p>
     </div>
-    <ul class="zone" id="zone-list"></ul>
+    <div class="geo">
+      <div class="geo__left reveal">
+        <div class="geo__map" id="map"></div>
+        <ul class="geo__pays" id="geo-pays"></ul>
+      </div>
+      <div class="geo__right reveal">
+        <h3 class="geo__t" data-c="geo.titre"></h3>
+        <p class="geo__s" data-c="geo.sous_titre"></p>
+        <div class="gq" id="gq">
+          <div class="gq__bar"><span class="gq__fill" id="gq-fill"></span></div>
+          <div class="gq__body" id="gq-body"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -142,7 +156,7 @@
 
 <noscript><div style="padding:2rem;font-family:sans-serif">Ce site a besoin de JavaScript pour afficher son contenu.</div></noscript>
 
-<script src="contenu.js?v=6"></script>
-<script src="script.js?v=6"></script>
+<script src="contenu.js?v=9"></script>
+<script src="script.js?v=9"></script>
 </body>
 </html>

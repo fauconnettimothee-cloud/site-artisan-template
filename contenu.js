@@ -17,10 +17,14 @@ const CONTENU = {
     metier: "Rénovation tous corps d'état",
     telephone: "06 12 34 56 78",
     telephone_lien: "0612345678",          // sans espaces, pour le bouton Appeler
+    // Numéro WhatsApp au format international, sans + ni espaces
+    // (33 pour la France, 32 Belgique, 41 Suisse). Sert au bouton
+    // du questionnaire : le message arrive tout rédigé.
+    whatsapp: "33612345678",
     email: "contact@renov-artisan.fr",
     site: "www.renov-artisan.fr",
-    ville: "Mont-de-Marsan",
-    adresse: "Zone artisanale, 40000 Mont-de-Marsan",
+    ville: "Grenoble",
+    adresse: "38000 Grenoble",
     siret: "",
   },
 
@@ -76,7 +80,7 @@ const CONTENU = {
     chantiers: [
       {
         titre: "Salle de bain",
-        lieu: "Saint-Sever",
+        lieu: "Voiron",
         duree: "12 jours",
         detail: "Dépose complète, plomberie refaite, faïence et douche à l'italienne.",
         avant: "images/chantiers/sdb-avant.jpg",
@@ -84,7 +88,7 @@ const CONTENU = {
       },
       {
         titre: "Cuisine",
-        lieu: "Mont-de-Marsan",
+        lieu: "Grenoble",
         duree: "3 semaines",
         detail: "Ouverture sur le séjour, îlot central, électricité et plomberie reprises.",
         avant: "images/chantiers/cuisine-avant.jpg",
@@ -92,7 +96,7 @@ const CONTENU = {
       },
       {
         titre: "Salle à manger",
-        lieu: "Aire-sur-l'Adour",
+        lieu: "Meylan",
         duree: "4 semaines",
         detail: "Plafond repris, murs redressés, parquet posé et cheminée remise en service.",
         avant: "images/chantiers/sejour-avant.jpg",
@@ -100,7 +104,7 @@ const CONTENU = {
       },
       {
         titre: "Balcon",
-        lieu: "Grenade-sur-l'Adour",
+        lieu: "Crolles",
         duree: "2 semaines",
         detail: "Étanchéité, garde-corps changé, terrasse bois et jardinières sur mesure.",
         avant: "images/chantiers/balcon-avant.jpg",
@@ -204,14 +208,15 @@ const CONTENU = {
      décroche. Vérifie chaque ligne.
      ──────────────────────────────────────────────────────────────── */
   prestations_titre: "Quels travaux peut-on faire chez vous ?",
-  prestations_intro: "Si vous avez des travaux à faire dans l'une de ces pièces, on peut vous aider.",
+  prestations_intro: "Une pièce entière à reprendre, ou juste un métier à faire intervenir : dans les deux cas, on peut vous aider.",
   prestations: [
     { titre: "Votre salle de bain",    image: "images/chantiers/sdb-apres.jpg" },
     { titre: "Votre cuisine",          image: "images/chantiers/cuisine-apres.jpg" },
     { titre: "Votre salle à manger",   image: "images/chantiers/sejour-apres.jpg" },
     { titre: "Votre balcon",           image: "images/chantiers/balcon-apres.jpg" },
-    { titre: "Votre entrée",           image: "images/ghl/ghl-10.jpg" },
-    { titre: "Votre toiture",          image: "images/ghl/ghl-09.jpg" },
+    { titre: "La plomberie",           image: "images/metiers/plomberie.jpg" },
+    { titre: "Le carrelage",           image: "images/metiers/carrelage.jpg" },
+    { titre: "La peinture",            image: "images/metiers/peinture.jpg" },
   ],
 
   /* ─── LES AVIS ──────────────────────────────────────────────────
@@ -234,14 +239,95 @@ const CONTENU = {
     },
   ],
 
-  /* ─── 13. LA ZONE D'INTERVENTION ─────────────────────────────────
-     C'est ce que Google lit pour te faire remonter sur
-     "maçon + nom de la ville".
+  /* ─── OÙ NOUS INTERVENONS ───────────────────────────────────────
+     La carte est générée automatiquement à partir des coordonnées
+     ci-dessous. Pour trouver les tiennes : va sur openstreetmap.org,
+     clic droit sur ta ville → « Afficher l'adresse » — la latitude et
+     la longitude s'affichent dans l'URL.
      ──────────────────────────────────────────────────────────────── */
   zone: {
     titre: "Où nous intervenons",
-    rayon: "Dans un rayon de 40 km autour de Mont-de-Marsan",
-    villes: ["Mont-de-Marsan", "Saint-Sever", "Aire-sur-l'Adour", "Grenade-sur-l'Adour", "Villeneuve-de-Marsan", "Roquefort", "Tartas", "Hagetmau"],
+    surtitre: "ZONE D'INTERVENTION",
+    texte: "Nous sommes basés à Grenoble, et nous nous déplaçons partout en France, en Suisse et en Belgique.",
+    // Le point sur la carte = là où tu es basé
+    latitude: 45.1885,
+    longitude: 5.7245,
+    pays: ["France", "Belgique", "Suisse"],
+  },
+
+  /* ─── LE QUESTIONNAIRE WHATSAPP ──────────────────────────────────
+     Le visiteur répond à 4 questions, et le bouton final ouvre
+     WhatsApp avec un message DÉJÀ RÉDIGÉ qui récapitule tout.
+     L'artisan reçoit un projet qualifié, pas un « bonjour ».
+
+     La 2ᵉ question s'adapte au pays choisi à la 1ʳᵉ.
+     Pour désactiver ce questionnaire : questions: [],
+     ──────────────────────────────────────────────────────────────── */
+  geo: {
+    titre: "Dites-nous où et quoi, on vous répond aujourd'hui.",
+    sous_titre: "Quatre questions, trente secondes. Vous partez avec un message déjà rédigé — vous n'avez plus qu'à l'envoyer.",
+    bouton: "Envoyer sur WhatsApp",
+    // Ce que le visiteur voit avant de cliquer sur le bouton final
+    recap_titre: "Votre message est prêt",
+    recap_texte: "Vérifiez, puis envoyez. On répond dans la journée.",
+    questions: [
+      {
+        cle: "pays",
+        question: "Où se situe votre projet ?",
+        reponses: [
+          { texte: "France" },
+          { texte: "Belgique" },
+          { texte: "Suisse" },
+        ],
+      },
+      {
+        cle: "region",
+        question: "Dans quelle région ?",
+        // Les choix dépendent du pays répondu juste avant
+        selon_pays: {
+          "France": ["Auvergne-Rhône-Alpes", "Provence-Alpes-Côte d'Azur", "Occitanie",
+                        "Nouvelle-Aquitaine", "Île-de-France", "Grand Est",
+                        "Bourgogne-Franche-Comté", "Hauts-de-France", "Normandie",
+                        "Bretagne", "Pays de la Loire", "Centre-Val de Loire", "Corse"],
+          "Belgique": ["Bruxelles-Capitale", "Wallonie", "Flandre"],
+          "Suisse": ["Genève", "Vaud", "Valais", "Fribourg", "Neuchâtel",
+                        "Berne", "Zurich", "Tessin", "Autre canton"],
+        },
+      },
+      {
+        cle: "projet",
+        question: "De quel chantier s'agit-il ?",
+        reponses: [
+          { texte: "Une salle de bain" },
+          { texte: "Une cuisine" },
+          { texte: "Une pièce à vivre" },
+          { texte: "Une rénovation complète" },
+        ],
+      },
+      {
+        cle: "delai",
+        question: "Pour quand ?",
+        reponses: [
+          { texte: "Dès que possible" },
+          { texte: "Dans les 3 mois" },
+          { texte: "Cette année" },
+          { texte: "Je me renseigne" },
+        ],
+      },
+    ],
+    // Le message envoyé. Les {mots entre accolades} sont remplacés
+    // par les réponses. Ne change pas les accolades, seulement le texte.
+    // Le message envoyé, ligne par ligne. Les {mots entre accolades}
+    // sont remplacés par les réponses. Une ligne vide = un saut de ligne.
+    message: [
+      "Bonjour, je vous contacte depuis votre site.",
+      "",
+      "Projet : {projet}",
+      "Où : {region}, {pays}",
+      "Démarrage : {delai}",
+      "",
+      "Pouvez-vous me dire si vous intervenez chez moi, et sous quel délai ?",
+    ],
   },
 
   /* ─── 14. LE CONTACT ─────────────────────────────────────────── */

@@ -17,3 +17,7 @@
 - 2026-08-19 · Sections SUPPRIMEES a la demande de Tim (ne pas les reintroduire) : « Une tradition d'exigence » (entreprise), « L'artisan derriere le chantier » (apropos), « Une entreprise a taille humaine » (chiffres), « L'equipe », bande « Plus de 14 ans », et « Chantiers termines » (realisations, jugee redondante avec les 4 comparateurs avant/apres).
 - 2026-08-19 · Structure finale : hero > avantapres > prestations(par PIECE) > quiz > avis > zone > contact.
 - 2026-08-19 · Temoignage reel : Sofiane, Grenoble (ami de Tim), photo images/avis/soso.jpg.
+- 2026-08-19 · Tim a demande de RETIRER l'overlay du hero sur PC (« trop sombre »). Le voile n'assombrit plus l'image : la lisibilite du texte repose UNIQUEMENT sur des text-shadow empiles. Ne pas reintroduire de voile sans son accord.
+- 2026-08-19 · Bande des 3 piliers (SAVOIR-FAIRE/ENGAGEMENT/GARANTIE) MASQUEE sur mobile (jugee moche et illisible). Visible seulement sur ordinateur.
+- 2026-08-19 · Section zone refaite : carte Leaflet+OSM centree Europe, point Grenoble + cercle 90 km, 3 pays (France/Belgique/Suisse) + questionnaire 4 questions (la region depend du pays) qui genere un message WhatsApp pre-rempli via wa.me. Numero dans contenu.js -> entreprise.whatsapp (format international sans +).
+- 2026-08-19 · Tuiles « Quels travaux » : 4 pieces + 3 metiers (plomberie/carrelage/peinture, images de Tim dans images/metiers/).
