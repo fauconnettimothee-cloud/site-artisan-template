@@ -57,13 +57,6 @@ const CONTENU = {
     image_mobile: "images/hero-mobile.jpg",
   },
 
-  /* ─── 4. LES 3 PILIERS — bande sous le hero ───────────────────── */
-  piliers: [
-    { surtitre: "SAVOIR-FAIRE", titre: "Tous corps d'état" },
-    { surtitre: "ENGAGEMENT", titre: "Délais tenus" },
-    { surtitre: "GARANTIE", titre: "Décennale incluse" },
-  ],
-
   /* ─── AVANT / APRÈS ──────────────────────────────────────────────
      LA section qui vend. On ne lit pas un artisan, on le regarde.
 
@@ -96,7 +89,7 @@ const CONTENU = {
         apres: "images/chantiers/cuisine-apres.jpg",
       },
       {
-        titre: "Salle à manger",
+        titre: "Salon",
         lieu: "Meylan",
         duree: "4 semaines",
         detail: "Plafond repris, murs redressés, parquet posé et cheminée remise en service.",
@@ -213,7 +206,7 @@ const CONTENU = {
   prestations: [
     { titre: "Votre salle de bain",    image: "images/chantiers/sdb-apres.jpg" },
     { titre: "Votre cuisine",          image: "images/chantiers/cuisine-apres.jpg" },
-    { titre: "Votre salle à manger",   image: "images/chantiers/sejour-apres.jpg" },
+    { titre: "Votre salon",          image: "images/chantiers/sejour-apres.jpg" },
     { titre: "Votre balcon",           image: "images/chantiers/balcon-apres.jpg" },
     { titre: "La plomberie",           image: "images/metiers/plomberie.jpg" },
     { titre: "Le carrelage",           image: "images/metiers/carrelage.jpg" },
