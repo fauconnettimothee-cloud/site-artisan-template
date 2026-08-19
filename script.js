@@ -52,6 +52,7 @@
 
   /* ── Hero ────────────────────────────────────────────── */
   if (C.hero && C.hero.image) $('hero-img').src = C.hero.image;
+  if (C.hero && C.hero.image_mobile) $('hero-src-m').srcset = C.hero.image_mobile;
 
   /* ── Piliers ─────────────────────────────────────────── */
   $('pillars').innerHTML = (C.piliers || []).map(function (p) {
@@ -159,60 +160,86 @@
 
 
   /* ═══ AVANT / APRÈS ═══════════════════════════════════
-     Balayage automatique en boucle (l'effet se comprend
-     sans rien faire), que le visiteur peut reprendre à la
-     main en glissant. */
+     Un comparateur par chantier. Chacun balaie tout seul en
+     boucle (l'effet se comprend sans rien faire) et se laisse
+     reprendre à la souris ou au doigt. */
   (function () {
-    var ap = C.avantapres || {};
-    var wrap = $('ba'), before = $('ba-before'), after = $('ba-after'), line = $('ba-line');
-    if (!wrap || !ap.apres) { if (wrap) wrap.closest('section').hidden = true; return; }
-
-    after.style.backgroundImage = 'url("' + ap.apres + '")';
-    /* Pas de photo "avant" fournie → on affiche la même image
-       assombrie et désaturée, en attendant la vraie. */
-    before.style.backgroundImage = 'url("' + (ap.avant || ap.apres) + '")';
-    if (!ap.avant) before.classList.add('is-auto');
-
-    var pos = 50, cible = 50, manuel = false, t0 = null, visible = false;
-    var pose = function (v) {
-      pos = Math.max(0, Math.min(100, v));
-      before.style.clipPath = 'inset(0 ' + (100 - pos) + '% 0 0)';
-      line.style.left = pos + '%';
-    };
-    pose(50);
-
-    if (!reduce) {
-      var boucle = function (t) {
-        if (!t0) t0 = t;
-        if (!manuel && visible) {
-          /* va-et-vient doux : 0 → 100 → 0 en 9 s */
-          var p = ((t - t0) / 9000) % 1;
-          var v = p < 0.5 ? p * 2 : (1 - p) * 2;
-          pose(6 + v * 88);
-        }
-        requestAnimationFrame(boucle);
-      };
-      requestAnimationFrame(boucle);
-      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; },
-        { threshold: 0.25 }).observe(wrap);
+    var ap = C.avantapres || {}, liste = $('ba-list');
+    var chantiers = (ap.chantiers || []).filter(function (c) { return c && c.apres; });
+    if (!liste || !chantiers.length) {
+      if (liste) liste.closest('section').hidden = true;
+      return;
     }
 
-    var frame = wrap.querySelector('.ba__frame');
-    var suit = function (clientX) {
-      var r = frame.getBoundingClientRect();
-      pose(((clientX - r.left) / r.width) * 100);
-    };
-    var prendre = function (ev) {
-      manuel = true;
-      suit(ev.touches ? ev.touches[0].clientX : ev.clientX);
-    };
-    frame.addEventListener('mousedown', prendre);
-    frame.addEventListener('mousemove', function (ev) { if (manuel) suit(ev.clientX); });
-    frame.addEventListener('touchstart', prendre, { passive: true });
-    frame.addEventListener('touchmove', function (ev) { if (manuel) suit(ev.touches[0].clientX); }, { passive: true });
-    /* on rend la main à l'animation quand la souris quitte le cadre */
-    frame.addEventListener('mouseleave', function () { manuel = false; t0 = null; });
-    window.addEventListener('mouseup', function () { if (manuel) { manuel = false; t0 = null; } });
+    liste.innerHTML = chantiers.map(function (c, i) {
+      var meta = [c.lieu, c.duree].filter(Boolean)
+                 .map(function (x, k) { return k ? '<b>' + esc(x) + '</b>' : esc(x); }).join(' · ');
+      return '<article class="ba reveal" data-i="' + i + '">' +
+        '<div class="ba__head">' +
+          '<span class="ba__num">' + ('0' + (i + 1)).slice(-2) + '</span>' +
+          '<div class="ba__meta">' +
+            '<h3 class="ba__t">' + esc(c.titre) + '</h3>' +
+            (meta ? '<p class="ba__sub">' + meta + '</p>' : '') +
+            (c.detail ? '<p class="ba__detail">' + esc(c.detail) + '</p>' : '') +
+          '</div>' +
+        '</div>' +
+        '<div class="ba__frame">' +
+          '<div class="ba__after" style="background-image:url(\'' + esc(c.apres) + '\')"></div>' +
+          '<div class="ba__before' + (c.avant ? '' : ' is-auto') + '" style="background-image:url(\'' +
+            esc(c.avant || c.apres) + '\')"></div>' +
+          '<div class="ba__line"><span class="ba__grip"></span></div>' +
+          '<span class="ba__tag ba__tag--l">AVANT</span>' +
+          '<span class="ba__tag ba__tag--r">APRÈS</span>' +
+        '</div>' +
+      '</article>';
+    }).join('');
+
+    liste.querySelectorAll('.ba').forEach(function (bloc, idx) {
+      var frame = bloc.querySelector('.ba__frame'),
+          before = bloc.querySelector('.ba__before'),
+          line = bloc.querySelector('.ba__line');
+      var manuel = false, t0 = null, visible = false;
+
+      var pose = function (v) {
+        v = Math.max(0, Math.min(100, v));
+        before.style.clipPath = 'inset(0 ' + (100 - v) + '% 0 0)';
+        line.style.left = v + '%';
+      };
+      pose(50);
+
+      if (!reduce) {
+        /* décalage par chantier : les comparateurs ne balaient pas
+           tous en même temps, l'oeil accroche mieux */
+        var offset = idx * 2200;
+        var boucle = function (t) {
+          if (!t0) t0 = t - offset;
+          if (!manuel && visible) {
+            var p = (((t - t0) / 9000) % 1);
+            var v = p < 0.5 ? p * 2 : (1 - p) * 2;
+            pose(6 + v * 88);
+          }
+          requestAnimationFrame(boucle);
+        };
+        requestAnimationFrame(boucle);
+        new IntersectionObserver(function (en) { visible = en[0].isIntersecting; },
+          { threshold: 0.2 }).observe(frame);
+      }
+
+      var suit = function (x) {
+        var r = frame.getBoundingClientRect();
+        pose(((x - r.left) / r.width) * 100);
+      };
+      var prendre = function (ev) {
+        manuel = true;
+        suit(ev.touches ? ev.touches[0].clientX : ev.clientX);
+      };
+      frame.addEventListener('mousedown', prendre);
+      frame.addEventListener('mousemove', function (ev) { if (manuel) suit(ev.clientX); });
+      frame.addEventListener('touchstart', prendre, { passive: true });
+      frame.addEventListener('touchmove', function (ev) { if (manuel) suit(ev.touches[0].clientX); }, { passive: true });
+      frame.addEventListener('mouseleave', function () { manuel = false; t0 = null; });
+      window.addEventListener('mouseup', function () { if (manuel) { manuel = false; t0 = null; } });
+    });
   })();
 
   /* ═══ QUIZ ════════════════════════════════════════════ */

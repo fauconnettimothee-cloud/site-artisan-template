@@ -40,9 +40,16 @@ const CONTENU = {
      ──────────────────────────────────────────────────────────────── */
   hero: {
     surtitre: "ARTISAN DEPUIS 2012",
-    titre: "Vos travaux faits par un artisan qui répond au téléphone",
+    // Le H1 : court, il doit accrocher. Le détail va dans le sous-titre.
+    titre: "Un artisan de confiance pour tous vos projets",
+    // Le sous-titre porte la promesse complète : à qui je parle,
+    // ce qui les bloque aujourd'hui, ce qu'ils obtiennent, et sans quoi.
+    sous_titre: "Vous voulez rénover sans relancer dix fois, sans devis qui gonfle en cours de route et sans chantier qui traîne six mois. Un seul interlocuteur, du premier coup de pioche à la remise des clés.",
     bouton: "Demander un devis gratuit",
-    image: "images/ghl/ghl-05.jpg",
+    // Deux versions de la photo d'accueil : large pour ordinateur,
+    // haute pour telephone. Remplace les deux fichiers dans images/.
+    image: "images/hero-desktop.jpg",
+    image_mobile: "images/hero-mobile.jpg",
   },
 
   /* ─── 4. LES 3 PILIERS — bande sous le hero ───────────────────── */
@@ -72,22 +79,53 @@ const CONTENU = {
 
 
   /* ─── AVANT / APRÈS ──────────────────────────────────────────────
-     LA section qui vend pour un artisan : on voit le travail.
+     LA section qui vend. On ne lit pas un artisan, on le regarde.
 
-     Mets DEUX photos du MÊME chantier, prises du MÊME endroit :
-     une avant les travaux, une après. C'est ce cadrage identique
+     Pour chaque chantier, mets DEUX photos prises du MÊME endroit :
+     une avant les travaux, une après. C'est le cadrage identique
      qui rend l'effet spectaculaire.
 
-     Tu n'as que la photo "après" ? Laisse avant: "" — le site
-     affichera automatiquement la même image assombrie en guise
-     d'avant, en attendant que tu prennes la vraie.
+     Pour ajouter un chantier : copie un bloc { ... }, colle-le,
+     change les textes et les deux images. Pour en retirer un :
+     supprime son bloc. Les numéros se recalculent tout seuls.
      ──────────────────────────────────────────────────────────────── */
   avantapres: {
-    titre: "Voyez le chantier avant de le commander.",
-    sous_titre: "À gauche la pièce telle qu'on l'a trouvée. À droite telle qu'on l'a rendue. Même angle, même pièce, 12 jours d'écart.",
-    legende: "Glissez la ligne pour comparer — ou laissez faire.",
-    avant: "",
-    apres: "images/ghl/ghl-02.jpg",
+    titre: "Le même endroit, avant et après nous.",
+    sous_titre: "Quatre chantiers menés cette année. Glissez la ligne pour comparer — ou laissez faire.",
+    chantiers: [
+      {
+        titre: "Salle de bain",
+        lieu: "Saint-Sever",
+        duree: "12 jours",
+        detail: "Dépose complète, plomberie refaite, faïence et douche à l'italienne.",
+        avant: "images/chantiers/sdb-avant.jpg",
+        apres: "images/chantiers/sdb-apres.jpg",
+      },
+      {
+        titre: "Cuisine",
+        lieu: "Mont-de-Marsan",
+        duree: "3 semaines",
+        detail: "Ouverture sur le séjour, îlot central, électricité et plomberie reprises.",
+        avant: "images/chantiers/cuisine-avant.jpg",
+        apres: "images/chantiers/cuisine-apres.jpg",
+      },
+      {
+        titre: "Salle à manger",
+        lieu: "Aire-sur-l'Adour",
+        duree: "4 semaines",
+        detail: "Plafond repris, murs redressés, parquet posé et cheminée remise en service.",
+        avant: "images/chantiers/sejour-avant.jpg",
+        apres: "images/chantiers/sejour-apres.jpg",
+      },
+      {
+        titre: "Balcon",
+        lieu: "Grenade-sur-l'Adour",
+        duree: "2 semaines",
+        detail: "Étanchéité, garde-corps changé, terrasse bois et jardinières sur mesure.",
+        avant: "images/chantiers/balcon-avant.jpg",
+        apres: "images/chantiers/balcon-apres.jpg",
+      },
+    ],
   },
 
   /* ─── LE QUIZ ────────────────────────────────────────────────────

@@ -30,11 +30,17 @@
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="hero">
-  <div class="hero__media"><img id="hero-img" alt="" fetchpriority="high"></div>
+  <div class="hero__media">
+    <picture>
+      <source id="hero-src-m" media="(max-width:768px)">
+      <img id="hero-img" alt="" fetchpriority="high">
+    </picture>
+  </div>
   <div class="hero__veil"></div>
   <div class="wrap hero__in">
     <p class="hero__sur" data-c="hero.surtitre"></p>
     <h1 class="hero__h1" data-c="hero.titre"></h1>
+    <p class="hero__sub" data-c="hero.sous_titre"></p>
     <a href="#contact" class="btn btn--gold" data-c="hero.bouton"></a>
   </div>
   <div class="wrap hero__pillars"><div class="pillars" id="pillars"></div></div>
@@ -93,18 +99,7 @@
       <p class="head__lede" data-c="avantapres.sous_titre"></p>
     </div>
   </div>
-  <div class="wrap">
-    <div class="ba reveal" id="ba">
-      <div class="ba__frame">
-        <div class="ba__after" id="ba-after"></div>
-        <div class="ba__before" id="ba-before"></div>
-        <div class="ba__line" id="ba-line"><span class="ba__grip"></span></div>
-        <span class="ba__tag ba__tag--l">AVANT</span>
-        <span class="ba__tag ba__tag--r">APRÈS</span>
-      </div>
-      <p class="ba__hint" data-c="avantapres.legende"></p>
-    </div>
-  </div>
+  <div class="wrap ba-list" id="ba-list"></div>
 </section>
 
 <!-- ══ PRESTATIONS ══ -->
