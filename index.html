@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chargement…</title>
+<meta name="description" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ══ BARRE HAUTE ══ -->
+<header class="nav" id="nav">
+  <div class="wrap nav__in">
+    <a href="#" class="nav__logo" data-c="entreprise.nom"></a>
+    <nav class="nav__links">
+      <a href="#prestations">Prestations</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#apropos">Qui je suis</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn--tel nav__tel" id="nav-tel"></a>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="hero">
+  <div class="hero__bg" id="hero-bg"></div>
+  <div class="wrap hero__in">
+    <p class="hero__sur" data-c="hero.surtitre"></p>
+    <h1 class="hero__h1" data-c="hero.titre"></h1>
+    <p class="hero__sub" data-c="hero.sous_titre"></p>
+    <div class="hero__cta">
+      <a href="#contact" class="btn btn--gold" data-c="hero.bouton"></a>
+      <a class="btn btn--ghost" id="hero-tel"></a>
+    </div>
+  </div>
+  <div class="hero__scroll"><span></span></div>
+</section>
+
+<!-- ══ RASSURANCES ══ -->
+<section class="reassure reveal">
+  <div class="wrap reassure__grid" id="reassure-grid"></div>
+</section>
+
+<!-- ══ PRESTATIONS ══ -->
+<section class="sec" id="prestations">
+  <div class="wrap">
+    <p class="sec__kicker reveal">Ce que je fais</p>
+    <h2 class="sec__h2 reveal">Prestations</h2>
+    <div class="serv" id="serv-grid"></div>
+  </div>
+</section>
+
+<!-- ══ RÉALISATIONS ══ -->
+<section class="sec sec--dark" id="realisations">
+  <div class="wrap">
+    <p class="sec__kicker reveal">Chantiers terminés</p>
+    <h2 class="sec__h2 reveal">Réalisations</h2>
+    <div class="work" id="work-grid"></div>
+  </div>
+</section>
+
+<!-- ══ QUI JE SUIS ══ -->
+<section class="sec" id="apropos">
+  <div class="wrap about">
+    <div class="about__media reveal"><div class="about__photo" id="about-photo"></div></div>
+    <div class="about__txt reveal">
+      <p class="sec__kicker">L'artisan</p>
+      <h2 class="sec__h2" data-c="apropos.titre"></h2>
+      <p class="about__p" data-c="apropos.texte"></p>
+      <p class="about__sign" data-c="apropos.signature"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ AVIS (masqué si aucun avis réel) ══ -->
+<section class="sec sec--dark" id="avis" hidden>
+  <div class="wrap">
+    <p class="sec__kicker reveal">Ils m'ont fait confiance</p>
+    <h2 class="sec__h2 reveal">Avis clients</h2>
+    <div class="avis" id="avis-grid"></div>
+  </div>
+</section>
+
+<!-- ══ ZONE ══ -->
+<section class="sec zone" id="zone">
+  <div class="wrap">
+    <p class="sec__kicker reveal">Secteur</p>
+    <h2 class="sec__h2 reveal" data-c="zone.titre"></h2>
+    <p class="zone__rayon reveal" data-c="zone.rayon"></p>
+    <ul class="zone__list reveal" id="zone-list"></ul>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="sec sec--gold" id="contact">
+  <div class="wrap contact">
+    <div class="contact__left reveal">
+      <h2 class="sec__h2" data-c="contact.titre"></h2>
+      <p class="contact__p" data-c="contact.texte"></p>
+      <a class="contact__tel" id="contact-tel"></a>
+      <p class="contact__meta" data-c="contact.horaires"></p>
+      <p class="contact__meta" id="contact-mail"></p>
+    </div>
+    <form class="contact__form reveal" id="contact-form" hidden>
+      <label>Votre nom<input type="text" name="nom" required></label>
+      <label>Téléphone<input type="tel" name="telephone" required></label>
+      <label>Votre projet<textarea name="message" rows="4" required></textarea></label>
+      <button type="submit" class="btn btn--dark">Envoyer ma demande</button>
+      <p class="contact__rgpd">Vos coordonnées servent uniquement à vous recontacter. Aucune revente, aucune newsletter.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ══ PIED DE PAGE ══ -->
+<footer class="foot">
+  <div class="wrap foot__in">
+    <span id="foot-nom"></span>
+    <span id="foot-siret"></span>
+    <a href="mentions.html">Mentions légales</a>
+  </div>
+</footer>
+
+<!-- ══ BARRE APPEL MOBILE ══ -->
+<a class="callbar" id="callbar"></a>
+
+<noscript>
+  <div style="padding:2rem;font-family:sans-serif">Ce site a besoin de JavaScript pour afficher son contenu.</div>
+</noscript>
+
+<script src="contenu.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
