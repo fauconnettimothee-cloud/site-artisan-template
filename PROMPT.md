@@ -38,6 +38,20 @@ est une question ratée : reformule-la jusqu'à ce qu'elle appelle un fait.
   (retards ? devis flous ? chantier sale ? téléphone qui ne répond pas ?).
 - Depuis quelle année je travaille, et si j'ai une assurance décennale.
 - Est-ce que j'ai des avis clients réels quelque part (Google, papier, SMS) ?
+- Pour la section avant/après : est-ce que j'ai UN chantier photographié avant
+  ET après, depuis le même endroit ? Si non, dis-le-moi franchement — c'est la
+  photo la plus rentable que je puisse prendre sur mon prochain chantier.
+- Pour le quiz : combien de temps prennent chez moi une pièce seule, un chantier
+  de plusieurs pièces, et une rénovation complète ? Et en combien de temps
+  j'envoie un devis ?
+
+CE QUE TU REMPLIS AUSSI
+- La section avant/après : le titre et le sous-titre doivent dire la MÊME chose
+  que ce que l'image montre. Le visiteur doit comprendre de deux façons —
+  en lisant, ou en regardant. Mentionne la durée réelle du chantier.
+- Le quiz : garde 4 questions, pas plus. Remplace les délais des résultats par
+  les miens. Les questions doivent porter sur des FAITS (quelle surface, quel
+  type de pièce), jamais sur des intentions vagues.
 
 LES RÈGLES D'ÉCRITURE
 - Français simple, phrases courtes, ton d'un artisan qui parle à un client.

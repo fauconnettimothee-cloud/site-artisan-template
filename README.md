@@ -30,9 +30,33 @@ Dans le dossier **`images/`**, remplace les images d'attente par les tiennes,
 |---|---|
 | `hero.jpg` | Ton plus beau chantier terminé, en pleine lumière. C'est la première image que le visiteur voit. |
 | `artisan.jpg` | Toi, en tenue de travail, sur un chantier. Pas en costume, pas de photo d'identité. |
-| `chantier-1.jpg` à `chantier-4.jpg` | Quatre chantiers finis. Un téléphone récent suffit : lumière du jour, photo prise droite, pièce rangée. |
+| `chantier-1.jpg` à `chantier-6.jpg` | Six chantiers finis. Un téléphone récent suffit : lumière du jour, photo prise droite, pièce rangée. |
+| `avant.jpg` + `apres.jpg` | **Les deux plus importantes.** Le même chantier photographié depuis le **même endroit**, avant puis après. C'est ce cadrage identique qui rend la comparaison spectaculaire. |
 
 Les photos verticales rendent mieux que les horizontales, sauf pour `hero.jpg`.
+
+### Le réflexe à prendre dès demain
+
+Sur ton prochain chantier, **avant de poser le premier outil**, prends une photo
+de la pièce depuis la porte. À la fin, remets-toi exactement au même endroit et
+reprends la même photo. Ces deux images valent plus que trois paragraphes de
+texte sur ton savoir-faire — c'est la section que les visiteurs regardent
+le plus longtemps.
+
+---
+
+## Les deux sections qui font la différence
+
+**L'avant / après.** Le site fait défiler tout seul la comparaison entre la photo
+d'avant et celle d'après, avec une ligne dorée qui balaie l'image — le visiteur
+comprend sans rien faire, et peut attraper la ligne pour comparer lui-même.
+Tu n'as encore qu'une photo « après » ? Laisse `avant: ""` dans `contenu.js` :
+le site affichera la même image assombrie en attendant la vraie.
+
+**Le quiz.** Quatre questions qui situent le projet du visiteur et lui donnent un
+repère de délai, avant de l'amener au téléphone. Ajuste surtout les **délais**
+des résultats à ta façon de travailler : c'est ce que les gens retiennent.
+Tu n'en veux pas ? Mets `questions: []` et la section disparaît.
 
 ---
 

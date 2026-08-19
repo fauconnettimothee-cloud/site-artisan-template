@@ -33,9 +33,9 @@ with sync_playwright() as p:
         if name == "apercu-desktop":
             print("  titre onglet :", page.title())
             print("  H1           :", page.inner_text("h1")[:70])
-            print("  prestations  :", page.locator(".serv__it").count())
-            print("  chantiers    :", page.locator(".work__it").count())
-            print("  villes       :", page.locator(".zone__list li").count())
+            print("  tuiles       :", page.locator(".tile").count())
+            print("  chantiers    :", page.locator(".work").count())
+            print("  villes       :", page.locator(".zone li").count())
             print("  section avis :", "masquee" if page.locator("#avis").is_hidden() else "VISIBLE")
             print("  lien tel     :", page.get_attribute("#callbar", "href"))
         ctx.close()

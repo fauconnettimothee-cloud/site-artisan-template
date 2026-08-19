@@ -8,92 +8,224 @@
 <meta name="description" content="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- ══ BARRE HAUTE ══ -->
+<div class="progress" id="progress"></div>
+
+<!-- ══ NAVIGATION ══ -->
 <header class="nav" id="nav">
   <div class="wrap nav__in">
-    <a href="#" class="nav__logo" data-c="entreprise.nom"></a>
-    <nav class="nav__links">
-      <a href="#prestations">Prestations</a>
-      <a href="#realisations">Réalisations</a>
-      <a href="#apropos">Qui je suis</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a class="btn btn--tel nav__tel" id="nav-tel"></a>
+    <a href="#" class="nav__logo">
+      <span class="nav__mark" aria-hidden="true"></span>
+      <span id="nav-nom"></span>
+    </a>
+    <nav class="nav__links" id="nav-links"></nav>
+    <a class="nav__tel" id="nav-tel"></a>
+    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="hero">
-  <div class="hero__bg" id="hero-bg"></div>
+  <div class="hero__media"><img id="hero-img" alt="" fetchpriority="high"></div>
+  <div class="hero__veil"></div>
   <div class="wrap hero__in">
     <p class="hero__sur" data-c="hero.surtitre"></p>
     <h1 class="hero__h1" data-c="hero.titre"></h1>
-    <p class="hero__sub" data-c="hero.sous_titre"></p>
-    <div class="hero__cta">
-      <a href="#contact" class="btn btn--gold" data-c="hero.bouton"></a>
-      <a class="btn btn--ghost" id="hero-tel"></a>
-    </div>
+    <a href="#contact" class="btn btn--gold" data-c="hero.bouton"></a>
   </div>
-  <div class="hero__scroll"><span></span></div>
+  <div class="wrap hero__pillars"><div class="pillars" id="pillars"></div></div>
 </section>
 
-<!-- ══ RASSURANCES ══ -->
-<section class="reassure reveal">
-  <div class="wrap reassure__grid" id="reassure-grid"></div>
+<!-- ══ L'ENTREPRISE ══ -->
+<section class="sec sec--ink" id="entreprise">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2 class="head__h2" data-c="entreprise_section.titre"></h2>
+      <p class="head__kick" data-c="entreprise_section.surtitre"></p>
+    </div>
+    <div class="ent">
+      <div class="ent__col reveal">
+        <h3 class="ent__t" data-c="entreprise_section.bloc1_titre"></h3>
+        <p class="ent__p" data-c="entreprise_section.bloc1_texte"></p>
+      </div>
+      <figure class="card reveal">
+        <div class="card__img" id="ent-card1"></div>
+        <figcaption class="card__cap">
+          <h3 class="card__t" data-c="entreprise_section.carte1_titre"></h3>
+          <p class="card__p" data-c="entreprise_section.carte1_texte"></p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="ent ent--2">
+      <div class="ent__duo">
+        <div class="ent__col reveal">
+          <span class="ent__ico" aria-hidden="true"></span>
+          <h3 class="ent__t" data-c="entreprise_section.bloc2_titre"></h3>
+          <p class="ent__p" data-c="entreprise_section.bloc2_texte"></p>
+        </div>
+        <div class="ent__col reveal">
+          <span class="ent__ico ent__ico--2" aria-hidden="true"></span>
+          <h3 class="ent__t" data-c="entreprise_section.bloc3_titre"></h3>
+          <p class="ent__p" data-c="entreprise_section.bloc3_texte"></p>
+        </div>
+      </div>
+      <figure class="card reveal">
+        <div class="card__img" id="ent-card2"></div>
+        <figcaption class="card__cap">
+          <h3 class="card__t" data-c="entreprise_section.carte2_titre"></h3>
+          <p class="card__p" data-c="entreprise_section.carte2_texte"></p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ AVANT / APRÈS ══ -->
+<section class="sec sec--paper" id="avantapres">
+  <div class="wrap">
+    <div class="head head--center reveal">
+      <h2 class="head__h2" data-c="avantapres.titre"></h2>
+      <p class="head__lede" data-c="avantapres.sous_titre"></p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="ba reveal" id="ba">
+      <div class="ba__frame">
+        <div class="ba__after" id="ba-after"></div>
+        <div class="ba__before" id="ba-before"></div>
+        <div class="ba__line" id="ba-line"><span class="ba__grip"></span></div>
+        <span class="ba__tag ba__tag--l">AVANT</span>
+        <span class="ba__tag ba__tag--r">APRÈS</span>
+      </div>
+      <p class="ba__hint" data-c="avantapres.legende"></p>
+    </div>
+  </div>
 </section>
 
 <!-- ══ PRESTATIONS ══ -->
-<section class="sec" id="prestations">
+<section class="sec sec--paper" id="prestations">
   <div class="wrap">
-    <p class="sec__kicker reveal">Ce que je fais</p>
-    <h2 class="sec__h2 reveal">Prestations</h2>
-    <div class="serv" id="serv-grid"></div>
+    <div class="head reveal">
+      <h2 class="head__h2" data-c="prestations_titre"></h2>
+      <p class="head__kick">NOS PRESTATIONS</p>
+    </div>
   </div>
+  <div class="tiles" id="tiles"></div>
 </section>
 
 <!-- ══ RÉALISATIONS ══ -->
-<section class="sec sec--dark" id="realisations">
+<section class="sec sec--paper" id="realisations">
   <div class="wrap">
-    <p class="sec__kicker reveal">Chantiers terminés</p>
-    <h2 class="sec__h2 reveal">Réalisations</h2>
-    <div class="work" id="work-grid"></div>
+    <div class="head reveal">
+      <h2 class="head__h2" data-c="realisations_titre"></h2>
+      <p class="head__kick" data-c="realisations_surtitre"></p>
+      <p class="head__lede" data-c="realisations_intro"></p>
+    </div>
   </div>
+  <div class="works" id="works"></div>
 </section>
 
-<!-- ══ QUI JE SUIS ══ -->
-<section class="sec" id="apropos">
-  <div class="wrap about">
-    <div class="about__media reveal"><div class="about__photo" id="about-photo"></div></div>
-    <div class="about__txt reveal">
-      <p class="sec__kicker">L'artisan</p>
-      <h2 class="sec__h2" data-c="apropos.titre"></h2>
-      <p class="about__p" data-c="apropos.texte"></p>
-      <p class="about__sign" data-c="apropos.signature"></p>
+
+<!-- ══ QUIZ ══ -->
+<section class="sec sec--grey" id="quiz">
+  <div class="wrap">
+    <div class="head head--center reveal">
+      <h2 class="head__h2" data-c="quiz.titre"></h2>
+      <p class="head__lede" data-c="quiz.sous_titre"></p>
+    </div>
+    <div class="qz reveal" id="qz">
+      <div class="qz__bar"><span class="qz__fill" id="qz-fill"></span></div>
+      <div class="qz__body" id="qz-body"></div>
     </div>
   </div>
 </section>
 
-<!-- ══ AVIS (masqué si aucun avis réel) ══ -->
-<section class="sec sec--dark" id="avis" hidden>
+<!-- ══ QUI NOUS SOMMES ══ -->
+<section class="sec sec--paper" id="apropos">
+  <div class="wrap about">
+    <div class="about__left reveal">
+      <h2 class="about__h2" data-c="apropos.titre"></h2>
+      <a href="#contact" class="btn btn--gold" data-c="apropos.bouton"></a>
+    </div>
+    <div class="about__col reveal">
+      <h3 class="about__t" data-c="apropos.col1_titre"></h3>
+      <p class="about__p" data-c="apropos.col1_texte"></p>
+    </div>
+    <div class="about__col reveal">
+      <h3 class="about__t" data-c="apropos.col2_titre"></h3>
+      <p class="about__p" data-c="apropos.col2_texte"></p>
+    </div>
+  </div>
+  <div class="wrap"><div class="bandeau reveal">
+    <p class="bandeau__t" data-c="apropos.bandeau"></p>
+    <a href="#contact" class="btn btn--gold btn--sm">Demander un devis</a>
+  </div></div>
+</section>
+
+<!-- ══ CHIFFRES (bande parallaxe) ══ -->
+<section class="sec sec--grey" id="chiffres" hidden>
   <div class="wrap">
-    <p class="sec__kicker reveal">Ils m'ont fait confiance</p>
-    <h2 class="sec__h2 reveal">Avis clients</h2>
+    <div class="head reveal">
+      <h2 class="head__h2" data-c="chiffres_titre"></h2>
+      <p class="head__kick" data-c="chiffres_surtitre"></p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stats__bg" id="stats-bg"></div>
+      <div class="stats__veil"></div>
+      <div class="stats__grid" id="stats-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ÉQUIPE ══ -->
+<section class="sec sec--paper" id="equipe" hidden>
+  <div class="wrap">
+    <div class="head head--center reveal">
+      <h2 class="head__h2" data-c="equipe_titre"></h2>
+      <p class="head__lede" data-c="equipe_intro"></p>
+    </div>
+    <div class="team" id="team"></div>
+  </div>
+</section>
+
+<!-- ══ BANDE EXPÉRIENCE (parallaxe) ══ -->
+<section class="band" id="band">
+  <div class="band__bg" id="band-bg"></div>
+  <div class="band__veil"></div>
+  <div class="wrap band__in reveal">
+    <p class="band__sur" data-c="bande.surtitre"></p>
+    <h2 class="band__h2" data-c="bande.titre"></h2>
+    <a class="btn btn--ghost" id="band-btn"></a>
+  </div>
+</section>
+
+<!-- ══ AVIS ══ -->
+<section class="sec sec--ink" id="avis" hidden>
+  <div class="wrap">
+    <div class="head head--center reveal">
+      <h2 class="head__h2" data-c="avis_titre"></h2>
+      <p class="head__kick" data-c="avis_surtitre"></p>
+    </div>
     <div class="avis" id="avis-grid"></div>
   </div>
 </section>
 
 <!-- ══ ZONE ══ -->
-<section class="sec zone" id="zone">
+<section class="sec sec--paper" id="zone">
   <div class="wrap">
-    <p class="sec__kicker reveal">Secteur</p>
-    <h2 class="sec__h2 reveal" data-c="zone.titre"></h2>
-    <p class="zone__rayon reveal" data-c="zone.rayon"></p>
-    <ul class="zone__list reveal" id="zone-list"></ul>
+    <div class="head reveal">
+      <h2 class="head__h2" data-c="zone.titre"></h2>
+      <p class="head__kick">ZONE D'INTERVENTION</p>
+      <p class="head__lede" data-c="zone.rayon"></p>
+    </div>
+    <ul class="zone" id="zone-list"></ul>
   </div>
 </section>
 
@@ -101,7 +233,7 @@
 <section class="sec sec--gold" id="contact">
   <div class="wrap contact">
     <div class="contact__left reveal">
-      <h2 class="sec__h2" data-c="contact.titre"></h2>
+      <h2 class="contact__h2" data-c="contact.titre"></h2>
       <p class="contact__p" data-c="contact.texte"></p>
       <a class="contact__tel" id="contact-tel"></a>
       <p class="contact__meta" data-c="contact.horaires"></p>
@@ -119,19 +251,16 @@
 
 <!-- ══ PIED DE PAGE ══ -->
 <footer class="foot">
-  <div class="wrap foot__in">
-    <span id="foot-nom"></span>
-    <span id="foot-siret"></span>
+  <div class="wrap foot__row" id="foot-row"></div>
+  <div class="wrap foot__legal">
+    <span id="foot-copy"></span>
     <a href="mentions.html">Mentions légales</a>
   </div>
 </footer>
 
-<!-- ══ BARRE APPEL MOBILE ══ -->
 <a class="callbar" id="callbar"></a>
 
-<noscript>
-  <div style="padding:2rem;font-family:sans-serif">Ce site a besoin de JavaScript pour afficher son contenu.</div>
-</noscript>
+<noscript><div style="padding:2rem;font-family:sans-serif">Ce site a besoin de JavaScript pour afficher son contenu.</div></noscript>
 
 <script src="contenu.js"></script>
 <script src="script.js"></script>
