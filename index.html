@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-<link rel="stylesheet" href="styles.css?v=17">
+<link rel="stylesheet" href="styles.css?v=18">
 </head>
 <body>
 
@@ -32,11 +32,16 @@
 
 <!-- ══ HERO ══ -->
 <section class="hero" id="hero">
-  <div class="hero__media">
+  <div class="hero__media" id="hero-media">
     <picture>
       <source id="hero-src-m" media="(max-width:768px)">
       <img id="hero-img" alt="" fetchpriority="high">
     </picture>
+    <picture class="hero__before" id="hero-before" hidden>
+      <source id="hero-bsrc-m" media="(max-width:768px)">
+      <img id="hero-bimg" alt="" fetchpriority="high">
+    </picture>
+    <span class="hero__line" id="hero-line" hidden></span>
   </div>
   <div class="hero__veil"></div>
   <div class="wrap hero__in">
@@ -179,7 +184,7 @@
 
 <noscript><div style="padding:2rem;font-family:sans-serif">Ce site a besoin de JavaScript pour afficher son contenu.</div></noscript>
 
-<script src="contenu.js?v=17"></script>
-<script src="script.js?v=17"></script>
+<script src="contenu.js?v=18"></script>
+<script src="script.js?v=18"></script>
 </body>
 </html>

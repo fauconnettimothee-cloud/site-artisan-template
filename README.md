@@ -57,6 +57,18 @@ le plus longtemps.
 
 ---
 
+## L'accueil animé (facultatif)
+
+La photo d'accueil peut se transformer toute seule, comme les chantiers plus bas.
+Il faut **deux photos entières de la même pièce, prises du même endroit** :
+une avant les travaux, une après. Renseigne-les dans `contenu.js`,
+lignes `image_avant` et `image_avant_mobile`.
+
+Laisse ces deux lignes vides pour garder une photo d'accueil fixe —
+dans ce cas rien de plus n'est chargé au démarrage.
+
+---
+
 ## Les deux sections qui font la différence
 
 **L'avant / après.** Le site fait défiler tout seul la comparaison entre la photo

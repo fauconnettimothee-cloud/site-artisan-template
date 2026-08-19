@@ -32,3 +32,5 @@
 - 2026-08-19 · Sticky CTA desormais AUSSI sur PC (en bas a droite). Texte : « Une question sur votre projet ? ».
 - 2026-08-19 · H1 tenu sur 2 lignes : hero__in elargi a 920 px + h1 max-width 24ch + text-wrap:balance.
 - 2026-08-19 · ⚠️ PIEGE PAYE DEUX FOIS : un `re.sub` de nettoyage CSS a supprime tout le bloc `.ba*` (avant/apres) ET `.qz*` (quiz) — sections invisibles en production sans aucune erreur console. Un `@keyframes` supprime a aussi laisse le fragment `100%{...}}` qui cassait le CSS suivant. **Apres tout nettoyage CSS par regex : verifier l'equilibre des accolades ET mesurer la hauteur reelle des blocs cles.**
+- 2026-08-19 · Hero animable en avant/apres : mecanisme code et teste (couche `.hero__before` + ligne doree, balayage 11 s). INACTIF par defaut — il s'active en renseignant `hero.image_avant` et `hero.image_avant_mobile` dans contenu.js. Sans photo « avant », zero poids ajoute au chargement.
+- 2026-08-19 · L'image hero actuelle est un PHOTOMONTAGE (avant+apres deja colles cote a cote) : inutilisable pour un comparateur. Il faut 2 photos ENTIERES de la meme piece au MEME angle.

@@ -83,6 +83,13 @@ a{color:inherit;text-decoration:none}
 /* ── Hero — pattern skill landing (cascade, 2 CTA, scroll) ─ */
 .hero{position:relative;min-height:86svh;display:flex;flex-direction:column;justify-content:center;padding:8rem 0 0;background:var(--ink);overflow:hidden}
 .hero__media{position:absolute;inset:0;overflow:hidden}
+.hero__media picture{position:absolute;inset:0}
+/* couche « avant » : révélée par la ligne qui balaie */
+.hero__before{clip-path:inset(0 50% 0 0);will-change:clip-path}
+.hero__before img{filter:brightness(1) saturate(1)}
+.hero__line{position:absolute;top:0;bottom:0;left:50%;width:3px;z-index:1;
+  background:linear-gradient(180deg,transparent,var(--gold) 14%,#fff 50%,var(--gold) 86%,transparent);
+  box-shadow:0 0 26px 4px rgba(251,190,63,.5);pointer-events:none;will-change:left}
 .hero__media img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);filter:brightness(1.08) saturate(1.04);animation:kenburns 26s var(--e) infinite alternate;will-change:transform}
 @keyframes kenburns{to{transform:scale(1.15) translate(-1.4%,-1.4%)}}
 

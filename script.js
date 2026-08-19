@@ -63,8 +63,31 @@
   if (sur && C.hero && C.hero.surtitre) sur.hidden = false;
 
   /* ── Hero ────────────────────────────────────────────── */
-  if (C.hero && C.hero.image) $('hero-img').src = C.hero.image;
-  if (C.hero && C.hero.image_mobile) $('hero-src-m').srcset = C.hero.image_mobile;
+  var H = C.hero || {};
+  if (H.image) $('hero-img').src = H.image;
+  if (H.image_mobile) $('hero-src-m').srcset = H.image_mobile;
+
+  /* Accueil animé : seulement si une photo « avant » est fournie.
+     Sinon la photo reste fixe — aucun poids inutile au chargement. */
+  if (H.image_avant) {
+    var hb = $('hero-before'), hl = $('hero-line');
+    $('hero-bimg').src = H.image_avant;
+    if (H.image_avant_mobile) $('hero-bsrc-m').srcset = H.image_avant_mobile;
+    hb.hidden = false; hl.hidden = false;
+    if (!reduce) {
+      var t0 = null;
+      var balaie = function (t) {
+        if (!t0) t0 = t;
+        var p = (((t - t0) / 11000) % 1);
+        var v = p < 0.5 ? p * 2 : (1 - p) * 2;
+        var x = 8 + v * 84;
+        hb.style.clipPath = 'inset(0 ' + (100 - x) + '% 0 0)';
+        hl.style.left = x + '%';
+        requestAnimationFrame(balaie);
+      };
+      requestAnimationFrame(balaie);
+    }
+  }
 
   /* ── Tuiles prestations ──────────────────────────────── */
   $('tiles').innerHTML = (C.prestations || []).map(function (s) {
