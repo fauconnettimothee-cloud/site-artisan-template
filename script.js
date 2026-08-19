@@ -13,8 +13,20 @@
 
   var C = CONTENU;
   var esc = function (s) {
-    return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    /* on échappe aussi l'apostrophe : elle sert de délimiteur dans les
+       url('...') des attributs style, et sans ça une valeur de contenu.js
+       pourrait injecter des déclarations CSS */
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  };
+  /* Une URL destinée à un url(...) dans un attribut style : on encode tout
+     ce qui pourrait refermer la parenthèse ou le délimiteur. Échapper en
+     entités HTML ne suffit PAS ici — le navigateur les décode avant de lire
+     le CSS, et l'injection passerait quand même. */
+  var urlCss = function (u) {
+    return String(u == null ? '' : u).replace(/[()'"\\;\s]/g, function (c) {
+      return '%' + c.charCodeAt(0).toString(16).toUpperCase().padStart(2, '0');
     });
   };
   var get = function (p) { return p.split('.').reduce(function (o, k) { return (o || {})[k]; }, C); };
@@ -52,12 +64,18 @@
   $('nav-nom').textContent = e.nom || '';
 
   /* ── Menu ────────────────────────────────────────────── */
+  /* on n'accepte qu'une ancre, un chemin relatif ou http(s) :
+     ça ferme la porte à un href "javascript:..." */
+  var lienSur = function (u) {
+    u = String(u || '').trim();
+    return /^(#|\/|https?:\/\/|mailto:|tel:)/i.test(u) ? u : '#';
+  };
   $('nav-links').innerHTML = (C.menu || []).map(function (m) {
-    return '<a href="' + esc(m.lien) + '">' + esc(m.texte) + '</a>';
+    return '<a href="' + esc(lienSur(m.lien)) + '">' + esc(m.texte) + '</a>';
   }).join('');
 
   /* ── Téléphone partout ───────────────────────────────── */
-  var tel = e.telephone_lien || (e.telephone || '').replace(/[^0-9+]/g, '');
+  var tel = (e.telephone_lien || e.telephone || '').replace(/[^0-9+]/g, '');
   /* liens simples : href + libellé */
   [['nav-tel', e.telephone], ['ctabar-tel', e.telephone]].forEach(function (p) {
     var el = $(p[0]); if (!el) return;
@@ -110,7 +128,7 @@
     /* un vrai lien, pas un bloc écoutant le clic : accessible au clavier,
        ouvrable dans un onglet, et fonctionne quoi qu'il arrive */
     return '<a class="tile reveal" id="' + ancreTuile(s.titre) + '" href="#contact">' +
-           '<span class="tile__bg" style="background-image:url(\'' + esc(s.image) + '\')"></span>' +
+           '<span class="tile__bg" style="background-image:url(&quot;' + urlCss(s.image) + '&quot;)"></span>' +
            '<span class="tile__cap"><span class="tile__t">' + esc(s.titre) + '</span>' +
            '<span class="tile__go">DEMANDER UN DEVIS →</span></span></a>';
   }).join('');
@@ -157,7 +175,7 @@
     $('avis').hidden = false;
     $('avis-grid').innerHTML = C.avis.map(function (a) {
       return '<figure class="temo__it reveal">' +
-             (a.photo ? '<div class="temo__ph" style="background-image:url(&quot;' + esc(a.photo) + '&quot;)"></div>' : '') +
+             (a.photo ? '<div class="temo__ph" style="background-image:url(&quot;' + urlCss(a.photo) + '&quot;)"></div>' : '') +
              '<blockquote class="temo__q">« ' + esc(a.texte) + ' »</blockquote>' +
              '<figcaption class="temo__who"><span class="temo__n">' + esc(a.auteur) + '</span>' +
              (a.role ? '<span class="temo__r">' + esc(a.role) + '</span>' : '') + '</figcaption></figure>';
@@ -181,7 +199,7 @@
 
   /* ── Pied de page ────────────────────────────────────── */
   $('foot-row').innerHTML = [
-    e.adresse ? ['ADRESSE', e.adresse] : null,
+    e.adresse ? ['ADRESSE', esc(e.adresse)] : null,
     e.telephone ? ['TÉLÉPHONE', '<a href="tel:' + tel + '">' + esc(e.telephone) + '</a>'] : null,
     e.email ? ['EMAIL', '<a href="mailto:' + esc(e.email) + '">' + esc(e.email) + '</a>'] : null,
     e.site ? ['SITE', esc(e.site)] : null
@@ -217,9 +235,9 @@
           '</div>' +
         '</div>' +
         '<div class="ba__frame">' +
-          '<div class="ba__after" style="background-image:url(\'' + esc(c.apres) + '\')"></div>' +
-          '<div class="ba__before' + (c.avant ? '' : ' is-auto') + '" style="background-image:url(\'' +
-            esc(c.avant || c.apres) + '\')"></div>' +
+          '<div class="ba__after" style="background-image:url(&quot;' + urlCss(c.apres) + '&quot;)"></div>' +
+          '<div class="ba__before' + (c.avant ? '' : ' is-auto') + '" style="background-image:url(&quot;' +
+            urlCss(c.avant || c.apres) + '&quot;)"></div>' +
           '<div class="ba__line"><span class="ba__grip"></span></div>' +
           '<span class="ba__tag ba__tag--l">AVANT</span>' +
           '<span class="ba__tag ba__tag--r">APRÈS</span>' +
